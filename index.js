@@ -18,14 +18,15 @@ app.use('/login', login);
 app.use('/loadHours', loadHours);
 app.use('/register', register);
 
-// Production mode 
+
+
+// Production mode add public directory
 
     // Static folder
     app.use(express.static(__dirname + '/public/'));
  // SPA
- app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-
-
+ app.get(/.*/ , (req, res) => res.sendFile(__dirname + '/public/index.html')); 
+ 
 
 
 const port = process.env.port || 3000;

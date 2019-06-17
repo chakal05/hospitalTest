@@ -14,7 +14,6 @@ async function checkUser() {
 
 router.post('/', async (req, res) => {
     let date = req.body.date;
-    console.log(date);
     let query = await checkUser();
     let search = await query.find({ date: date }, { projection: { _id: 0, email: 0, date: 0, __v: 0 } }).toArray();
     if (search.length > 0) {
