@@ -270,6 +270,9 @@ export default {
               this.$router.push({ name: "admin" });
             }
           }
+          if(response.data){
+            console.log(response.data);
+          }
         })
         .catch(e => {
           this.connexionErr = true;

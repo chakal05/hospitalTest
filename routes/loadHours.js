@@ -17,6 +17,9 @@ router.post('/', async function (req, res) {
      const day = jour.find({ date: dag
      }).toArray();
      const timmar = await day;
+
+     console.log(timmar);
+
      timmar.forEach((el) => {
        bookedHours.push(el.heure);
      })
@@ -25,3 +28,4 @@ router.post('/', async function (req, res) {
    })
 
    module.exports = router;
+   

@@ -7,10 +7,7 @@ mongoose.connect('mongodb://localhost/peltier', { useNewUrlParser: true });
 //Connection URL
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-//db.once('open', function () {
-//  console.log("connected to mongodb");
-//});
-//
+
 var bookingSchema = new mongoose.Schema({
   nom: String,
   prénom: String,
@@ -69,6 +66,7 @@ router.post('/', async function (req, res) {
   var post = new connexion(nyTid);
  
   if (post.save()) {
+    console.log('registered a new one');
        res.status(200).end();
      }
   })
