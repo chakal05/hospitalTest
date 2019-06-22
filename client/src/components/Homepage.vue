@@ -416,6 +416,12 @@ export default {
 #home {
   color: #133358;
 }
+
+.container{
+width: 90%;
+margin: 0 auto;
+}
+
 h3 {
   margin-top: -1rem;
   margin-bottom: 4%;
@@ -426,6 +432,7 @@ h3 {
   border-radius: 3px;
   padding: 3%;
   box-shadow: 1px 1px 1px 1px #8ea9c4;
+  margin: 0 auto;
 }
 
 .bold {
@@ -686,9 +693,7 @@ input:focus {
   background-color: #5076a4;
 }
 @media only screen and (max-width: 320px) {
-  .container {
-    width: 320px;
-    margin: 0 auto;
+  .container{
   }
   .firstList,
   .secondList {
@@ -698,7 +703,9 @@ input:focus {
   .perso {
     margin-top: 15%;
   }
-  .bouton {
+  .bouton,
+  .whiteBtn {
+    margin-left: -5.7%;
     margin-bottom: 5%;
   }
   .chekmen {
@@ -762,8 +769,10 @@ input:focus {
 
 @media only screen and (max-width: 1264px) and (min-width: 959px) {
   h3 {
-    margin-bottom: 3%;
+    margin-top: 0.5%;
+    margin-bottom: 3rem;
   }
+
   .lists {
     width: 60%;
     padding: 4%;
@@ -802,7 +811,7 @@ input:focus {
     width: 30%;
     padding: 2%;
     float: right;
-    margin-top: 0.3rem;
+    margin-top: 0.5%;
   }
   .perso {
     margin-top: 4%;
@@ -844,17 +853,15 @@ input:focus {
 
 @media only screen and (min-width: 1264px) {
   h3 {
-    margin-bottom: 1.5%;
+    margin-bottom: 3rem;
   }
   .lists {
     width: 60%;
     padding: 3%;
     float: left;
-    margin-left: 0;
     margin-bottom: 2%;
   }
   .firstList {
-    margin-left: 0;
     float: left;
     width: 50%;
     border: 1px solid;
