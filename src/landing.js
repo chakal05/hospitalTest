@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import workplace from './assets/workers.jpeg';
+import workplace from './assets/christina-wocintechchat-com-tKYfcTaXsf0-unsplash.jpg';
 import logo from './assets/LogoMakr_6XClbq.png';
-import grey from '@material-ui/core/colors/grey';
+import IconButton from '@material-ui/core/IconButton';
 
 function Copyright() {
   return (
@@ -36,19 +36,17 @@ const useStyles = makeStyles(theme => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(3, 21, 1),
+    padding: theme.spacing(3, 6, 1),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
 
   topBar: {
-    border: '1px solid',
     borderTopLeftRadius: '1.1rem',
     borderTopRightRadius: '1.1rem',
     borderLeftColor: '#fff',
     borderRightColor: '#fff',
-    borderBottomColor: '#5A5B5D',
   },
 
   footer: {
@@ -65,27 +63,33 @@ const useStyles = makeStyles(theme => ({
   },
 
   media: {
-    // border:'1px solid',
-    width: '70%',
-    height: '600px',
+    borderBottomLeftRadius: '1.5rem',
+    height: '800px',
   },
 
-  signUp:{
-    marginLeft:'1rem'
+  secondLogo: {
+    height: '200px',
+    padding: '3rem',
+    marginTop: '2rem',
   },
 
-  pic: {
-    backgroundColor: '#fff',
-    borderBottomLeftRadius: '1rem',
-    borderBottomRightRadius: '1rem',
+  signUp: {},
+
+  right: {},
+
+  btns: {
+    backgroundColor: '#1A2B3F',
+    color: '#fff',
+    marginLeft: '1rem',
   },
+
+  pic: {},
   main: {
-    border: '1px solid',
+    backgroundColor: '#fff',
     borderBottomLeftRadius: '1.5rem',
     borderBottomRightRadius: '1.5rem',
     borderLeftColor: '#fff',
     borderRightColor: '#fff',
-    borderBottomColor: '#5A5B5D',
   },
 }));
 
@@ -94,7 +98,7 @@ export default function Album() {
 
   return (
     <React.Fragment>
-      <Container>
+      <Container maxWidth='xl'>
         <AppBar
           className={classes.topBar}
           color='#5A5B5D'
@@ -102,21 +106,100 @@ export default function Album() {
           position='relative'
         >
           <Toolbar>
-           <Typography className={classes.title}>
-           <a href='#'>
-           <img src={logo} className={classes.logo} />
-           </a>
-           </Typography>
-            <Button variant='text'  color='#212121'>Login</Button>
-            <Button variant='text' className={classes.signUp}  color='inherit'>Sign up</Button>
+            <IconButton
+              edge='start'
+              className={classes.menuButton}
+              color='inherit'
+              aria-label='menu'
+            >
+              <img src={logo} className={classes.logo} alt='logo' />
+            </IconButton>
+            <Typography className={classes.title}>
+              <a href='#'>
+                <h3>KERJA</h3>
+              </a>
+            </Typography>
+            <Button variant='contained' className={classes.btns}>
+              Login
+            </Button>
+            <Button variant='contained' className={classes.btns}>
+              Sign up
+            </Button>
           </Toolbar>
         </AppBar>
       </Container>
-      <Container>
+      <Container maxWidth='xl'>
         {/* Hero unit */}
+        <Grid container className={classes.main}>
+          <Grid item xs={12} sm={8}>
+            <div className={classes.pic}>
+              <img src={workplace} alt='workplace' className={classes.media} />
+            </div>
+          </Grid>
 
-        <Grid container maxWidth={'lg'} align='center' className={classes.main}>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.right} align='center' sm={4}>
+            <div>
+              <img src={logo} className={classes.secondLogo} alt='logo' />
+            </div>
+            <div className={classes.heroContent}>
+              <Typography
+                component='h2'
+                variant='h4'
+                align='center'
+                color='textPrimary'
+                gutterBottom
+              >
+                Meet your new collegue
+              </Typography>
+              <Typography
+                variant='h6'
+                align='center'
+                color='textSecondary'
+                paragraph
+              >
+                Whether you are looking for a job or for your next employee,
+                Kerja got what you are searching. Visit the links below for more.
+              </Typography>
+              <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify='center'>
+                  <Grid item>
+                    <Button variant='outlined' color='5A5B5D'>
+                      Search job
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant='outlined' color='5A5B5D'>
+                      Post ad
+                    </Button>
+                  </Grid>
+                </Grid>
+              </div>
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
+      {/* Footer */}
+
+      {/* End footer */}
+    </React.Fragment>
+  );
+}
+
+/*
+
+<footer className={classes.footer}>
+<Typography
+  variant='subtitle1'
+  align='center'
+  color='textSecondary'
+  component='p'
+>
+  Something here to give the footer a purpose!
+</Typography>
+<Copyright />
+</footer>
+
+ <Grid item xs={6}>
             <div className={classes.heroContent}>
               <Typography
                 component='h2'
@@ -153,32 +236,5 @@ export default function Album() {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12}>
-            <div className={classes.pic}>
-              <img src={workplace} alt='workplace' className={classes.media} />
-            </div>
-          </Grid>
-        </Grid>
-      </Container>
-      {/* Footer */}
-
-      {/* End footer */}
-    </React.Fragment>
-  );
-}
-
-/*
-
-<footer className={classes.footer}>
-<Typography
-  variant='subtitle1'
-  align='center'
-  color='textSecondary'
-  component='p'
->
-  Something here to give the footer a purpose!
-</Typography>
-<Copyright />
-</footer>
 
 */
