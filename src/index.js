@@ -1,10 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import './landing.scss';
-import Landing from '../src/landing';
+import Routes from './router/index';
+//import database from
+import './firebase/index';
+import storage from './redux/store/index';
+import { Provider } from 'react-redux';
 
+const store = storage();
 
-    ReactDOM.render(<Landing />, document.getElementById('root'))
+function App() {
+  return (
+   <Provider store={store}>
+   <Routes />
+   </Provider>
+  );
+}
 
-
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
