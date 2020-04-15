@@ -18,11 +18,6 @@ const filterReducerDefaultState = {
           sortBy: action.sortBy,
         };
   
-      case 'SORT_BY_AMOUNT':
-        return {
-          ...state,
-          sortBy: action.sortBy,
-        };
       case 'START_DATE':
         return {
           ...state,

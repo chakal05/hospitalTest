@@ -7,12 +7,23 @@ class PostedJob extends React.Component {
     super(props);
     this.state = {};
   }
+
+  goBack() {
+    this.props.history.push('/annonser');
+  }
+
   render() {
     return (
       <div>
-        
+      <button onClick={this.goBack}>
+      {' '}
+      Go back to results{' '}
+    </button>
         <JobPost {...this.props.result} />
-        <p>Job post id:  {this.props.match.params.id} </p>
+        <p>
+          Job post id:{' '}
+          {this.props.match.params.id}{' '}
+        </p>
       </div>
     );
   }
@@ -21,8 +32,11 @@ class PostedJob extends React.Component {
 const mapPropsTo = (state, props) => {
   return {
     result: state.results.find((element) => {
-       return element.identifier === props.match.params.id;
-     }),
+      return (
+        element.identifier ===
+        props.match.params.id
+      );
+    }),
   };
 };
 

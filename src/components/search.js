@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { sortByText } from '../redux/actions/filters';
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,18 +11,18 @@ export default class Search extends React.Component {
   }
 
   searchQuery = (e) => {
-      const val = e.target.value;
+    const query = e.target.value;
     this.setState(() => ({
-      query: val
+      query,
     }));
-
   };
 
   onsubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit({
-      query: this.state.query,
-    });
+    this.props.dispatch(
+      sortByText({ text: this.state.query })
+    );
+    this.props.onSubmit();
   };
 
   render() {
@@ -29,7 +31,6 @@ export default class Search extends React.Component {
         <form onSubmit={this.onsubmit}>
           <input
             type='text'
-            name='search'
             onChange={this.searchQuery}
           />
           <button type='submit'>Search</button>
@@ -38,3 +39,11 @@ export default class Search extends React.Component {
     );
   }
 }
+
+// (state) => {
+//     return {
+//       filter: state.filter,
+//     };
+//   }
+
+export default connect()(Search);
