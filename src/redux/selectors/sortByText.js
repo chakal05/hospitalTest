@@ -9,7 +9,10 @@ export default (jobs, { text }) => {
         //  typeof endDate !== 'number' ||
         //  expense.createdAt >= endDate;
 
-        const textPositionMatch = job.jobPositionLocation.addressLine
+        const textPositionPurpose = job.jobPositionPurpose.purpose
+          .toLowerCase()
+          .includes(text.toLowerCase());
+        const textPositionLocationMatch = job.jobPositionLocation.addressLine
           .toLowerCase()
           .includes(text.toLowerCase());
         const textMatch = job.jobPositionTitle.title
@@ -19,7 +22,9 @@ export default (jobs, { text }) => {
         return (
           //startDateMatch &&
           // endDateMatch &&
-          textMatch || textPositionMatch
+          textMatch ||
+          textPositionLocationMatch ||
+          textPositionPurpose
         );
       })
       // eslint-disable-next-line array-callback-return
