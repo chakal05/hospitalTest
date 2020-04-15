@@ -1,7 +1,4 @@
 import database from '../../firebase/index';
-
-
-
    
 export const searchResult = (results) => ({
   type: 'RETRIVE_RESULTS',

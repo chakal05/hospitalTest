@@ -43,6 +43,9 @@ class JobPost extends React.Component {
             }{' '}
           </h4>
           <h4>
+          {this.props.jobPositionLocation.addressLine}
+          </h4>
+          <h4>
             {this.props.classification.duration}
           </h4>
         </div>

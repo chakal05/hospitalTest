@@ -1,7 +1,4 @@
-export default (
-  jobs,
-  { text}
-) => {
+export default (jobs, { text }) => {
   return (
     jobs
       .filter((job) => {
@@ -12,6 +9,9 @@ export default (
         //  typeof endDate !== 'number' ||
         //  expense.createdAt >= endDate;
 
+        const textPositionMatch = job.jobPositionLocation.addressLine
+          .toLowerCase()
+          .includes(text.toLowerCase());
         const textMatch = job.jobPositionTitle.title
           .toLowerCase()
           .includes(text.toLowerCase());
@@ -19,7 +19,7 @@ export default (
         return (
           //startDateMatch &&
           // endDateMatch &&
-          textMatch
+          textMatch || textPositionMatch
         );
       })
       // eslint-disable-next-line array-callback-return
