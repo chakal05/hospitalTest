@@ -1,49 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { sortByText } from '../redux/actions/filters';
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: '',
-    };
-  }
-
-  searchQuery = (e) => {
-    const query = e.target.value;
-    this.setState(() => ({
-      query,
-    }));
-  };
-
-  onsubmit = (e) => {
+const Search = (props) => {
+  const [textInput, setText] = useState('');
+  const onsubmit = (e) => {
     e.preventDefault();
-    this.props.dispatch(
-      sortByText({ text: this.state.query })
+    props.dispatch(
+      sortByText({ text: textInput })
     );
-    this.props.onSubmit();
+    props.onSubmit();
   };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.onsubmit}>
-          <input
-            type='text'
-            onChange={this.searchQuery}
-          />
-          <button type='submit'>Search</button>
-        </form>
-      </div>
-    );
-  }
-}
-
-// (state) => {
-//     return {
-//       filter: state.filter,
-//     };
-//   }
+  return (
+    <div>
+      <form onSubmit={onsubmit}>
+        <input
+          type='text'
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+        />
+        <button type='submit'>Search</button>
+      </form>
+    </div>
+  );
+};
 
 export default connect()(Search);

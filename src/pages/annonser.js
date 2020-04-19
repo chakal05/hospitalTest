@@ -7,21 +7,14 @@ import selectData from '../redux/selectors/sortByText';
 import { startSearchResults } from '../redux/actions/searchJobs';
 
 class Annonser extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  
 
   componentWillMount() {
-    console.log('annonser is mounting');
     this.props.dispatch(startSearchResults());
   }
-  componentWillUnmount() {
-    console.log('annonser is unmounting');
-  }
-  //    handle = () => {
-  //        this.props.history.push('/')
-  //    }
+     handle = () => {
+         console.log('new stuff should show')
+     }
 
   render() {
     return (

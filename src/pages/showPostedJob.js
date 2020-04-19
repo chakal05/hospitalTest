@@ -2,32 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import JobPost from '../components/jobPost';
 
-class PostedJob extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const PostedJob = (props) => {
+  const goBack = () => {
+    props.history.push('/annonser');
+  };
 
-  goBack() {
-    this.props.history.push('/annonser');
-  }
-
-  render() {
-    return (
-      <div>
-      <button onClick={this.goBack}>
-      {' '}
-      Go back to results{' '}
-    </button>
-        <JobPost {...this.props.result} />
-        <p>
-          Job post id:{' '}
-          {this.props.match.params.id}{' '}
-        </p>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <button onClick={goBack}>
+        {' '}
+        Go back to results{' '}
+      </button>
+      <JobPost {...props.result} />
+      <p>
+        Job post id: {props.match.params.id}{' '}
+      </p>
+    </div>
+  );
+};
 
 const mapPropsTo = (state, props) => {
   return {
