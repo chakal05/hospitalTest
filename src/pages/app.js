@@ -6,22 +6,17 @@ import { Provider } from 'react-redux';
 import Header from '../components/header';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
+
 const store = storage();
 
-const useStyle = makeStyles((theme) => ({
-  blanc: {
- //   backgroundColor: '#fff',
-  },
-}));
+//const useStyle = makeStyles((theme) => ({}));
 const App = () => {
-  const classes = useStyle();
+ // const classes = useStyle();
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Container
-        maxWidth='lg'
-        className={classes.blanc}>
+      <Container maxWidth='xl'>
         <Header />
         <Routes />
       </Container>

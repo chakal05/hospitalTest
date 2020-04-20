@@ -4,7 +4,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: white !important;
+  background: #0575E6;  
+  background: -webkit-linear-gradient(to right, #021B79, #0575E6);  
+  background: linear-gradient(to right, #021B79, #0575E6); 
+padding: 4rem;
+
 }
 
 code {

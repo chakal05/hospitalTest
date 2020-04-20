@@ -4,16 +4,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 //import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-   
   },
-  background:{
-    backgroundColor: '#ffff'
+  background: {
+    backgroundColor: '#fff',
+    borderTopLeftRadius: '1rem',
+    borderTopRightRadius: '1rem',
   },
   title: {
     flexGrow: 1,
@@ -25,12 +25,21 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" elevation={0} className={classes.background}>
+      <AppBar
+        position='static'
+        elevation={0}
+        className={classes.background}>
         <Toolbar>
-          <Typography color='primary' variant="h6" className={classes.title}>
-            Logo here
+          <Typography
+            color='primary'
+            variant='h6'
+            className={classes.title}>
+            JobCenter
           </Typography>
-          <Button color="primary">Login</Button>
+          <Button color='primary'>Login</Button>
+          <Button color='primary'>
+            Register
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
