@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Search from '../components/search';
 import { startSearchResults } from '../redux/actions/searchJobs';
@@ -55,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
     margin: '2rem',
     color: '#15347A',
   },
+
+  links :{
+   textDecoration: 'none'
+  }
 }));
 
 const Landing = (props) => {
@@ -119,8 +123,8 @@ const Landing = (props) => {
               container
               justify='center'
               spacing={2}>
-              {[0, 1, 2, 3].map((value) => (
-                <Grid key={value} item>
+              {props.results.map((item) => (
+                <Grid key={item.identifier} item>
                   <Paper
                     className={classes.paper}>
                     <Card
@@ -128,35 +132,41 @@ const Landing = (props) => {
                       variant='outlined'>
                       <CardContent>
                         <Typography
-                          className={
-                            classes.title
-                          }
                           color='textSecondary'
                           gutterBottom>
-                          Word of the Day
+                          New
                         </Typography>
                         <Typography
                           variant='h5'
                           component='h2'>
-                          benevolent
+                          {
+                            item.jobPositionTitle
+                              .title
+                          }
                         </Typography>
                         <Typography
                           className={classes.pos}
                           color='textSecondary'>
-                          adjective
+                          Durarion: {' '}
+                          {
+                            item.classification
+                              .duration
+                          }
                         </Typography>
                         <Typography
                           variant='body2'
                           component='p'>
-                          well meaning and kindly.
-                          <br />
-                          {'"a benevolent smile"'}
+                          {
+                            item
+                              .jobPositionPurpose
+                              .purpose
+                          }
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <Button size='small'>
-                          Learn More
-                        </Button>
+                      <Link to={`/annonser/${item.identifier}`} className={classes.links}>
+                      <Button variant='contained' >Learn more </Button>
+                      </Link>
                       </CardActions>
                     </Card>
                   </Paper>
@@ -170,4 +180,13 @@ const Landing = (props) => {
   );
 };
 
-export default connect()(Landing);
+const propsToState = (state) => {
+  return {
+    // Get the last 4 elements of the array
+    results: state.results.slice(
+      Math.max(state.results.length - 4, 0)
+    ),
+  };
+};
+
+export default connect(propsToState)(Landing);
