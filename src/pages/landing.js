@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Search from '../components/search';
+import Entete from '../components/entete';
 import { startSearchResults } from '../redux/actions/searchJobs';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -13,37 +14,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: '2rem',
-    backgroundColor: '#fff',
-  },
-
-  blue: {
-    padding: '1',
-    background: '#0575E6',
-    background:
-      '-webkit-linear-gradient(to right, #021B79, #0575E6)',
-    background:
-      'linear-gradient(to right, #021B79, #0575E6)',
-    borderRadius: '1rem',
-  },
-
-  title: {
-    textAlign: 'center',
-  },
-
-  header: {
-    color: '#fff',
-    fontSize: '3rem',
-    marginTop: '1rem',
-  },
-
-  searchInput: {
-    position: 'relative',
-    top: '2rem',
-  },
-
   list: {
     backgroundColor: '#fff',
     borderBottomLeftRadius: '1rem',
@@ -56,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#15347A',
   },
 
-  links :{
-   textDecoration: 'none'
-  }
+  links: {
+    textDecoration: 'none',
+  },
 }));
 
 const Landing = (props) => {
@@ -75,28 +45,10 @@ const Landing = (props) => {
   return (
     <Route>
       <div>
-        <div className={classes.root}>
-          <Grid
-            container
-            justify='center'
-            className={classes.blue}>
-            <Grid
-              item
-              xs={12}
-              className={classes.title}>
-              <h1 className={classes.header}>
-                {' '}
-                77 new jobs posted{' '}
-              </h1>
-            </Grid>
-            <Grid
-              item
-              xs={7}
-              className={classes.searchInput}>
-              <Search onSubmit={handleSubmit} />
-            </Grid>
-          </Grid>
-        </div>
+        <Entete
+          title={'77 nya jobb publicerade'}
+          onSubmit={handleSubmit}
+        />
 
         <Grid
           container
@@ -112,7 +64,7 @@ const Landing = (props) => {
                 fontWeight: 'bold',
               }}>
               {' '}
-              Latest posts{' '}
+             Senast inläggen{' '}
             </h1>
           </Grid>
           <Grid
@@ -134,7 +86,7 @@ const Landing = (props) => {
                         <Typography
                           color='textSecondary'
                           gutterBottom>
-                          New
+                          Ny
                         </Typography>
                         <Typography
                           variant='h5'
@@ -147,26 +99,29 @@ const Landing = (props) => {
                         <Typography
                           className={classes.pos}
                           color='textSecondary'>
-                          Durarion: {' '}
-                          {
-                            item.classification
-                              .duration
-                          }
+                          {`${item.hiringOrg.name} - ${item.jobPositionLocation.city}`}
                         </Typography>
                         <Typography
                           variant='body2'
                           component='p'>
-                          {
-                            item
-                              .jobPositionPurpose
-                              .purpose
-                          }
+                          {`Start datum: ${item.postDetail.startDate}`}
+                        </Typography>
+                        <Typography
+                          variant='body2'
+                          component='p'>
+                          {`Publicerad: ${item.postDetail.published}`}
                         </Typography>
                       </CardContent>
                       <CardActions>
-                      <Link to={`/annonser/${item.identifier}`} className={classes.links}>
-                      <Button variant='contained' >Learn more </Button>
-                      </Link>
+                        <Link
+                          to={`/annonser/${item.identifier}`}
+                          className={
+                            classes.links
+                          }>
+                          <Button variant='contained'>
+                            Läs mer{' '}
+                          </Button>
+                        </Link>
                       </CardActions>
                     </Card>
                   </Paper>
@@ -190,3 +145,26 @@ const propsToState = (state) => {
 };
 
 export default connect(propsToState)(Landing);
+
+// <div className={classes.root}>
+// <Grid
+//   container
+//   justify='center'
+//   className={classes.blue}>
+//   <Grid
+//     item
+//     xs={12}
+//     className={classes.title}>
+//     <h1 className={classes.header}>
+//       {' '}
+//       77 new jobs posted{' '}
+//     </h1>
+//   </Grid>
+//   <Grid
+//     item
+//     xs={7}
+//     className={classes.searchInput}>
+//     <Search onSubmit={handleSubmit} />
+//   </Grid>
+// </Grid>
+// </div>

@@ -6,11 +6,9 @@ import {
 } from 'react-router-dom';
 import history from '../services/history';
 import Landing from '../pages/landing';
-import SignUp from '../pages/signUp';
-import Login from '../pages/login';
 import Annonser from '../pages/annonser';
-import Postad from '../pages/postJob';
-import Postedjob from '../pages/showPostedJob';
+import Saved  from '../pages/showSavedJobs';
+import ClickedOnJob  from '../pages/showClickedOnJob';
 
 export default function Routes() {
   return (
@@ -21,12 +19,6 @@ export default function Routes() {
           exact
           component={Landing}
         />
-        <Route
-          path='/signup'
-          component={SignUp}
-        />
-        <Route path='/login' component={Login} />
-
         {
           <Route
             exact
@@ -37,12 +29,12 @@ export default function Routes() {
         {
           <Route
             path='/annonser/:id'
-            component={Postedjob}
+            component={ClickedOnJob}
           />
         }
         <Route
-          path='/post'
-          component={Postad}
+          path='/saved'
+          component={Saved}
           isPrivate
         />
 

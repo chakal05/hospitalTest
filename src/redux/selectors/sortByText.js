@@ -2,17 +2,11 @@ export default (jobs, { text }) => {
   return (
     jobs
       .filter((job) => {
-        //   const startDateMatch =
-        //    typeof startDate !== 'number' ||
-        //    expense.createdAt >= startDate;
-        //const endDateMatch =
-        //  typeof endDate !== 'number' ||
-        //  expense.createdAt >= endDate;
-
+          
         const textPositionPurpose = job.jobPositionPurpose.purpose
           .toLowerCase()
           .includes(text.toLowerCase());
-        const textPositionLocationMatch = job.jobPositionLocation.addressLine
+        const textPositionLocationMatch = job.jobPositionLocation.city
           .toLowerCase()
           .includes(text.toLowerCase());
         const textMatch = job.jobPositionTitle.title
@@ -20,8 +14,6 @@ export default (jobs, { text }) => {
           .includes(text.toLowerCase());
 
         return (
-          //startDateMatch &&
-          // endDateMatch &&
           textMatch ||
           textPositionLocationMatch ||
           textPositionPurpose

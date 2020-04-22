@@ -10,9 +10,7 @@ import Container from '@material-ui/core/Container';
 
 const store = storage();
 
-//const useStyle = makeStyles((theme) => ({}));
 const App = () => {
- // const classes = useStyle();
   return (
     <Provider store={store}>
       <CssBaseline />
