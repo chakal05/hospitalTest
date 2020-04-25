@@ -1,24 +1,26 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
+import { addToSaved } from '../redux/actions/savedJobs';
+import SaveBtn from '../components/saveBtn';
+import SavedJobs from '../components/savedJobs';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import SavedJobs from '../components/savedJobsBtn';
 import Entete from '../components/entete';
-import JobPostList from '../components/jobPostList';
+import Button from '@material-ui/core/Button';
 import selectData from '../redux/selectors/sortByText';
-import { startSearchResults } from '../redux/actions/searchJobs';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
+  list: {
+    backgroundColor: '#fff',
+    borderBottomLeftRadius: '1rem',
+    borderBottomRightRadius: '1rem',
+  },
   paper: {
     width: '90%',
     margin: '0 auto',
@@ -31,68 +33,29 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 12,
   },
 
-  savedJobs: {
-    position: 'relative',
-    top: '2rem',
-    textAlign: 'right',
-    paddingRight: '3rem',
-  },
-
-  list: {
-    backgroundColor: '#fff',
-    borderBottomLeftRadius: '1rem',
-    borderBottomRightRadius: '1rem',
-  },
-
-  secondHeader: {
-    textAlign: 'center',
-    margin: '2rem',
-    color: '#15347A',
-  },
-
   links: {
+    backgroundColor: '#13377F',
+  },
+  linK: {
     textDecoration: 'none',
-    flexGrow: 1,
+    color: '#fff',
   },
 }));
 
 const Annonser = (props) => {
-  const savedJobs = JSON.parse(
-    localStorage.getItem('savedJobs')
-  );
-
-  const [jobs, setJobs] = useState(
-    savedJobs || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem(
-      'savedJobs',
-      JSON.stringify(jobs)
-    );
-
-    props.dispatch(startSearchResults());
-  });
-
-  const saveAnnons = () => {
-    setJobs([...jobs, { ...props }]);
-
-    // Retrive saved jobs from localStorage
-    //  const da = JSON.parse(localStorage.getItem('savedJobs'));
-  };
-
- 
+  //   useEffect(() => {
+  //     localStorage.setItem(
+  //       'savedJobs',
+  //       JSON.stringify(jobs)
+  //     );
+  //   }, [jobs]);
 
   const handle = () => {
-    console.log('new stuff should show');
+    // console.log('new stuff should show');
   };
 
   const classes = useStyles();
 
-  const toSavedJobs = () => {
-      props.history.push('/saved')
-  }
-  
   return (
     <div>
       <Entete
@@ -104,24 +67,96 @@ const Annonser = (props) => {
         justify='center'
         className={classes.list}>
         <Grid
-          item
-          xs={12}
-          className={classes.savedJobs}>
-          <SavedJobs toSaved={toSavedJobs} />
-        </Grid>
-        <Grid
           style={{ margin: '4rem' }}
           item
           xs={12}>
           <Grid
+            item
+            xs={12}
+            style={{
+              textAlign: 'right',
+              marginTop: '-1rem',
+              marginBottom: '2rem',
+            }}>
+            <SavedJobs />
+          </Grid>
+
+          <Grid
             container
             justify='center'
             spacing={2}>
-            <JobPostList
-              list={props.results}
-              text={'save'}
-              action={saveAnnons}
-            />
+            <>
+              {props.results.map((item) => (
+                <Grid
+                  key={item.identifier}
+                  className={classes.paper}
+                  item>
+                  <Paper
+                    className={classes.paper}>
+                    <Card
+                      className={classes.root}
+                      variant='outlined'>
+                      <CardContent>
+                        <Typography
+                          variant='h5'
+                          component='h2'>
+                          {
+                            item.jobPositionTitle
+                              .title
+                          }
+                        </Typography>
+                        <Typography
+                          className={classes.pos}
+                          color='textSecondary'>
+                          {item.hiringOrg.name} -{' '}
+                          {item.hiringOrgContact.addressLine
+                            .split(',')
+                            .pop()}
+                        </Typography>
+                        <Typography component='h5'>
+                          {
+                            item.jobPositionTitle
+                              .title
+                          }
+                        </Typography>
+
+                        <Typography component='p'>
+                          {` Duration: ${item.classification.duration}`}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          variant='contained'
+                          className={
+                            classes.links
+                          }>
+                          <Link
+                            to={`/annonser/${item.identifier}`}
+                            className={
+                              classes.link
+                            }>
+                            Läs mer{' '}
+                          </Link>
+                        </Button>
+
+                        <SaveBtn
+                          save={() => {
+                            props.dispatch(
+                              addToSaved(item)
+                            );
+
+                            localStorage.setItem(
+                              'savedJobs',
+                              JSON.stringify([item])
+                            );
+                          }}
+                        />
+                      </CardActions>
+                    </Card>
+                  </Paper>
+                </Grid>
+              ))}
+            </>
           </Grid>
         </Grid>
       </Grid>
@@ -141,35 +176,3 @@ const mapPropsToTheState = (state) => {
 export default connect(mapPropsToTheState)(
   Annonser
 );
-
-// <Grid
-// container
-// justify='center'
-// className={classes.list}>
-// <Grid
-//   item
-//   xs={12}
-//   className={classes.savedJobs}>
-//   <SavedJobs />
-// </Grid>
-// <Grid
-//   style={{ margin: '4rem' }}
-//   item
-//   xs={12}>
-//   <Grid
-//     container
-//     justify='center'
-//     spacing={2}>
-//<JobPostList list={props.results} text={'save'} action={saveAnnons}/>
-//   </Grid>
-// </Grid>
-// </Grid>
-
-// <div className={classes.savedJobs}>
-//         <SavedJobs />
-//       </div>
-//       <JobPostList
-//         list={props.results}
-//         text={'save'}
-//         action={saveAnnons}
-//       />

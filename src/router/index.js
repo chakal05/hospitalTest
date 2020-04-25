@@ -7,7 +7,6 @@ import {
 import history from '../services/history';
 import Landing from '../pages/landing';
 import Annonser from '../pages/annonser';
-import Saved  from '../pages/showSavedJobs';
 import ClickedOnJob  from '../pages/showClickedOnJob';
 
 export default function Routes() {
@@ -32,11 +31,7 @@ export default function Routes() {
             component={ClickedOnJob}
           />
         }
-        <Route
-          path='/saved'
-          component={Saved}
-          isPrivate
-        />
+      
 
         {/* redirect user to SignIn page if route does not exist and user is not authenticated */}
         {/* <Route component={<h1> 404</h1>} /> */}

@@ -3,9 +3,6 @@ export default (jobs, { text }) => {
     jobs
       .filter((job) => {
           
-        const textPositionPurpose = job.jobPositionPurpose.purpose
-          .toLowerCase()
-          .includes(text.toLowerCase());
         const textPositionLocationMatch = job.jobPositionLocation.city
           .toLowerCase()
           .includes(text.toLowerCase());
@@ -15,19 +12,16 @@ export default (jobs, { text }) => {
 
         return (
           textMatch ||
-          textPositionLocationMatch ||
-          textPositionPurpose
+          textPositionLocationMatch
         );
       })
       // eslint-disable-next-line array-callback-return
       .sort((a, b) => {
-        return new Date(a.postDetail.startDate) <
-          new Date(b.postDetail.startDate)
+          
+        return new Date(a.postDetail.published) <
+          new Date(b.postDetail.published)
           ? 1
           : -1;
-        //  } else if (sortBy === 'amount') {
-        //    return a.amount < b.amount ? 1 : -1;
-        //  }
       })
   );
 };

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Search from '../components/search';
 import Entete from '../components/entete';
 import { startSearchResults } from '../redux/actions/searchJobs';
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Landing = (props) => {
   useEffect(() => {
-    props.dispatch(startSearchResults());
-  });
+     const {dispatch} = props;
+    dispatch(startSearchResults());
+  }, [props]);
 
   const handleSubmit = () => {
     props.history.push('/annonser');
@@ -48,7 +48,7 @@ const Landing = (props) => {
         <Entete
           title={'77 nya jobb publicerade'}
           onSubmit={handleSubmit}
-        />
+        /> 
 
         <Grid
           container
@@ -145,26 +145,3 @@ const propsToState = (state) => {
 };
 
 export default connect(propsToState)(Landing);
-
-// <div className={classes.root}>
-// <Grid
-//   container
-//   justify='center'
-//   className={classes.blue}>
-//   <Grid
-//     item
-//     xs={12}
-//     className={classes.title}>
-//     <h1 className={classes.header}>
-//       {' '}
-//       77 new jobs posted{' '}
-//     </h1>
-//   </Grid>
-//   <Grid
-//     item
-//     xs={7}
-//     className={classes.searchInput}>
-//     <Search onSubmit={handleSubmit} />
-//   </Grid>
-// </Grid>
-// </div>

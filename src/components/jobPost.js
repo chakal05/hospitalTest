@@ -1,5 +1,7 @@
 import React from 'react';
-import SaveBtn  from './savedJobsBtn'
+import {connect} from 'react-redux'
+import {addToSaved} from '../redux/actions/savedJobs';
+import SaveBtn from './saveBtn';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
@@ -9,9 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import '../pages/styles/jobPost.scss';
 
 const useStyles = makeStyles((theme) => ({
-
-  root:{
-      padding:'2rem 13rem 2rem'
+  root: {
+    padding: '2rem 13rem 2rem',
   },
   title: {
     fontSize: 14,
@@ -38,33 +39,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const JobPost = (props) => {
-//   const savedJobs = JSON.parse(
-//     localStorage.getItem('savedJobs')
-//   );
-
-//   const [jobs, setJobs] = useState(
-//     savedJobs || []
-//   );
-
-//   useEffect(() => {
-//     localStorage.setItem(
-//       'savedJobs',
-//       JSON.stringify(jobs)
-//     );
-//   });
-
-//   const saveAnnons = () => {
-//     setJobs([...jobs, { ...props }]);
-
-//     // Retrive saved jobs from localStorage
-//     //  const da = JSON.parse(localStorage.getItem('savedJobs'));
-//   };
-
   const classes = useStyles();
 
   return (
     <div>
-      <Paper className={classes.paper }>
+      <Paper className={classes.paper}>
         <Card
           className={classes.root}
           variant='outlined'>
@@ -157,16 +136,25 @@ const JobPost = (props) => {
               {props.jobPositionPurpose.purpose}
             </Typography>
             <Typography>
-              <h2> Om anställningen </h2>
+              <h2> Om anställningen : </h2>
               {`Lön: ${props.compensation.salaryType}`}
             </Typography>
             <Typography>
-              <h2> Adress </h2>
+              <h2> Adress : </h2>
               {props.hiringOrgContact.addressLine}
             </Typography>
           </CardContent>
           <CardActions>
-           <SaveBtn/>
+            <SaveBtn
+              save={() => {
+                props.dispatch(addToSaved(props));
+
+                localStorage.setItem(
+                  'savedJobs',
+                  JSON.stringify([props])
+                );
+              }}
+            />
           </CardActions>
         </Card>
       </Paper>
@@ -174,4 +162,4 @@ const JobPost = (props) => {
   );
 };
 
-export { JobPost as default };
+export default connect()(JobPost);

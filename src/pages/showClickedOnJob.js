@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SavedJobs from '../components/savedJobs';
 import JobPost from '../components/jobPost';
-import SavedJobs  from '../components/savedJobsBtn';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -45,9 +45,10 @@ const PostedJob = (props) => {
             {' '}
             Go back to results{' '}
           </Button>
+       
         </div>
         <div className={classes.savedJobs}>
-          <SavedJobs />
+        <SavedJobs/>
         </div>
       </div>
       <JobPost {...props.result} />

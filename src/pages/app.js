@@ -1,10 +1,11 @@
 import React from 'react';
-import Routes from '../router/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../firebase/index';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import storage from '../redux/store/index';
 import { Provider } from 'react-redux';
 import Header from '../components/header';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Routes from '../router/index';
 import Container from '@material-ui/core/Container';
 //import { makeStyles } from '@material-ui/core/styles';
 

@@ -1,5 +1,9 @@
-import React from 'react';
-import Search from './search'
+import React, {useState} from 'react';
+import { connect } from 'react-redux';
+import { sortByText } from '../redux/actions/filters';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -34,9 +38,29 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         top: '2rem',
       },
+
+      paper: {
+        padding: '2px 1px',
+        display: 'flex',
+      },
+      input: {
+        marginLeft: theme.spacing(3),
+        flex: 1,
+        height: '60px',
+      },
 }));
 
 const Entete = (props) => {
+
+    const [textInput, setText] = useState('');
+    const onsubmit = (e) => {
+      e.preventDefault();
+      props.dispatch(
+        sortByText({ text: textInput })
+      );
+      props.onSubmit();
+    };
+
   const classes = useStyles();
 
   return (
@@ -58,14 +82,29 @@ const Entete = (props) => {
           item
           xs={7}
           className={classes.searchInput}>
-          <Search onSubmit={props.onSubmit} />  
+          <Paper
+      component='form'
+      className={classes.paper}
+      onSubmit={onsubmit}>
+      <InputBase
+        className={classes.input}
+        placeholder='Search by profession or city  '
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+
+      <Button type='submit' variant='contained'>
+        Search
+      </Button>
+    </Paper> 
         </Grid>
       </Grid>
     </div>
-  );
+  ); 
 };
 
-export default Entete;
+
+export default connect()(Entete);
 
 
-//onSubmit={handleSubmit} 
