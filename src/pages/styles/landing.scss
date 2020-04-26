@@ -1,0 +1,22 @@
+@import './settings';
+
+
+.landingPage {
+    .list {
+        background-color: #fff; 
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    
+        .secondHeader {
+        text-align: center;
+        margin: 2rem;
+        color: #15347A;
+    
+        h1{
+            font-size: 3rem;
+            font-weight: bold;
+
+        }
+        }
+    }
+}

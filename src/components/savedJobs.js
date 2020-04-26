@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
-import Button from '@material-ui/core/Button';
+import Button from '../components/button';
 import { removeFromSavedJobs } from '../redux/actions/savedJobs';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -49,10 +49,10 @@ const SavedJobs = (props) => {
   return (
     <div>
       <Button
-        variant='contained'
-        onClick={() => setModalShow(true)}>
-        {`${props.saved.length} saved jobs`}
-      </Button>
+        text={`${props.saved.length} saved jobs`}
+        action={() => setModalShow(true)}/>
+        
+      
 
       <Modal
         show={modalShow}
@@ -104,15 +104,17 @@ const SavedJobs = (props) => {
                   </CardContent>
                   <CardActions>
                     <Button
+                    text={'See more'}
                       className={classes.links}>
                       <Link
                         to={`/annonser/${element.identifier}`}
                         className={classes.link}>
-                        Läs mer{' '}
+                        
                       </Link>
                     </Button>
                     <Button
-                      onClick={() => {
+                    text={'Delete'}
+                      action={() => {
                         props.dispatch(
                           removeFromSavedJobs(
                             element
@@ -133,23 +135,22 @@ const SavedJobs = (props) => {
                           JSON.stringify(toRemove)
                         );
                         setModalShow(false);
-                      }}>
-                      {' '}
-                      Delete{' '}
-                    </Button>
+                      }} />
+            
                   </CardActions>
                 </Card>
               </Paper>
             </Grid>
           ))}
+
+          {props.saved[0] === undefined && <p> You have no saved jobs </p>  }
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={() => {
+          text={'Close'}
+            action={() => {
               setModalShow(false);
-            }}>
-            Close
-          </Button>
+            }}/>
         </Modal.Footer>
       </Modal>
     </div>

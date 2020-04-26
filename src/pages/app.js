@@ -7,15 +7,13 @@ import { Provider } from 'react-redux';
 import Header from '../components/header';
 import Routes from '../router/index';
 import Container from '@material-ui/core/Container';
-//import { makeStyles } from '@material-ui/core/styles';
-
 const store = storage();
 
 const App = () => {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Container maxWidth='xl'>
+      <Container  maxWidth='lg'>
         <Header />
         <Routes />
       </Container>
