@@ -14,7 +14,7 @@ const PostedJob = (props) => {
 			<div className='btnContainer'>
 				<div className='back'>
 					<Button
-						text={'Go back to results'}
+						text={'Gå tillbaka till resultaten'}
 						action={() => {
 							props.history.push(
 								'/annonser'

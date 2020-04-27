@@ -49,7 +49,7 @@ const SavedJobs = (props) => {
   return (
     <div>
       <Button
-        text={`${props.saved.length} saved jobs`}
+        text={`${props.saved.length} sparade`}
         action={() => setModalShow(true)}/>
         
       
@@ -61,11 +61,11 @@ const SavedJobs = (props) => {
         centered>
         <Modal.Header>
           <Modal.Title id='contained-modal-title-vcenter'>
-            Saved jobs
+            Sparade
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.saved.map((element) => (
+          {props.saved[0] && props.saved.map((element) => (
             <Grid
               key={element.identifier}
               className={classes.paper}
@@ -104,7 +104,7 @@ const SavedJobs = (props) => {
                   </CardContent>
                   <CardActions>
                     <Button
-                    text={'See more'}
+                    text={'Läs mer'}
                       className={classes.links}>
                       <Link
                         to={`/annonser/${element.identifier}`}
@@ -113,7 +113,7 @@ const SavedJobs = (props) => {
                       </Link>
                     </Button>
                     <Button
-                    text={'Delete'}
+                    text={'Radera'}
                       action={() => {
                         props.dispatch(
                           removeFromSavedJobs(
@@ -126,6 +126,7 @@ const SavedJobs = (props) => {
                             'savedJobs'
                           )
                         );
+                        
                         toRemove.splice(
                           element,
                           1
@@ -147,7 +148,7 @@ const SavedJobs = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-          text={'Close'}
+          text={'Stäng'}
             action={() => {
               setModalShow(false);
             }}/>

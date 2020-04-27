@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addToSaved } from '../redux/actions/savedJobs';
-import SaveBtn from './saveBtn';
+import Button from './button';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
 import '../pages/styles/jobPost.scss';
 
 const JobPost = (props) => {
@@ -57,6 +58,7 @@ const JobPost = (props) => {
 											.hasExperience.type && (
 											<Typography>
 												{`- ${props.qualificationsRequiredSummary.hasExperience.type}`}
+										
 											</Typography>
 										)}
 										{props.qualificationsRequiredSummary
@@ -93,18 +95,52 @@ const JobPost = (props) => {
 						</div>
 					</CardContent>
 
-					<CardActions>
-						<SaveBtn
-							save={() => {
-								props.dispatch(addToSaved(props));
+                    <CardActions>
+                 
+                    <Button
+                        text={'Save'}
+                        action={() => {
+                            const savedJobs = JSON.parse(
+                                localStorage.getItem(
+                                    'savedJobs'
+                                )
+                            );
 
-								localStorage.setItem(
-									'savedJobs',
-									JSON.stringify([props])
-								);
-							}}
-						/>
-					</CardActions>
+                            // if SavedJobs is empty
+
+                            if (!savedJobs) {
+                                props.dispatch(
+                                    addToSaved(props)
+                                );
+                                localStorage.setItem(
+                                    'savedJobs',
+                                    JSON.stringify([props])
+                                );
+
+
+                            } else {
+                            const check = savedJobs.find(
+                                (element) =>
+                                    element.identifier ===
+                                    props.identifier
+                            );
+
+
+                            if (check === undefined) {
+                                props.dispatch(
+                                    addToSaved(props)
+                                );
+                                localStorage.setItem(
+                                    'savedJobs',
+                                    JSON.stringify([props])
+                                );
+                            } else {
+                                alert('Redan sparade')
+                            }
+                           }
+                        }}
+                    />
+                    </CardActions>
 				</Card>
 			</Paper>
 		</div>

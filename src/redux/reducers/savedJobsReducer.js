@@ -13,7 +13,7 @@ export default (state = savedJobs, action) => {
       );
 
     case 'RETRIEVE_JOBS':
-      return [...state, ...action.jobs];
+      return [...action.jobs];
     default:
       return state;
   }

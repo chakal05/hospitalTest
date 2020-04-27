@@ -9,7 +9,7 @@ export default function ButtonAppBar(props) {
 			<Toolbar>
 				<a href='/' className='link'>
 					{' '}
-					JobCenter{' '}
+					Kerja{' '}
 				</a>
 			</Toolbar>
 		</AppBar>

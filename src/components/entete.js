@@ -44,7 +44,7 @@ const Entete = (props) => {
                   }}>
                   <InputBase
                      className='input'
-                     placeholder='Search by profession or city  '
+                     placeholder='Sök efter yrke eller stad'
                      onChange={(e) => {
                         setText(e.target.value);
                      }}
@@ -52,7 +52,7 @@ const Entete = (props) => {
 
                   <Button
                      type='submit'
-                     text={'SEARCH'}
+                     text={'Sök'}
                      className='btnSearch'
                      />
                </Paper>
