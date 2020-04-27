@@ -28,7 +28,7 @@ const Entete = (props) => {
             </Grid>
             <Grid
                item
-               xs={9}
+               xs={10}
                className='searchInput'>
                <Paper
                   component='form'
@@ -53,6 +53,7 @@ const Entete = (props) => {
                   <Button
                      type='submit'
                      text={'SEARCH'}
+                     className='btnSearch'
                      />
                </Paper>
             </Grid>

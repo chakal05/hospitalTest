@@ -1,8 +1,29 @@
 @import './settings';
 
-.paper{
+.jobPostWrapper {
+    border-bottom-left-radius: 1rem ;
+    border-bottom-right-radius: 1rem ;
+    
+.elevatedCard{
+    margin: 1rem;
+}
 
-    .root{
-        
+.jobDescription{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .anstallning {
+        margin-bottom: .5rem;
+        margin-top: .5rem;
     }
+}
+
+.saveBtn {
+    margin-top: -1rem;
+    text-align: right;
+}
+.boldTitle {
+    font-weight: 900;
+}
+
 }

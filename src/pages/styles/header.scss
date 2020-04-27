@@ -1,10 +1,13 @@
 .AppBar {
-    margin-top: 1rem;
     background-color : #fff !important;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 
-    .titre {
-       color: #13357B;
+ 
+    .link{
+    text-decoration: none;
+    color: #13357B;
+    font-size: 2rem;
     }
+        
 }

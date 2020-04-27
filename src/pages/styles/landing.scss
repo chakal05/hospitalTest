@@ -1,6 +1,5 @@
 @import './settings';
 
-
 .landingPage {
     .list {
         background-color: #fff; 
@@ -18,5 +17,18 @@
 
         }
         }
+
+        .cardContainer{
+            padding: 1rem;
+            margin-bottom: 3rem;
+
+            .carte{
+                width: 50%;
+
+                @include PhoneVIew {
+                    width: 100%;
+                }
+            }
+        }
     }
-}
+} 

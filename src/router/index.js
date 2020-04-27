@@ -7,7 +7,7 @@ import {
 import history from '../services/history';
 import Landing from '../pages/landing';
 import Annonser from '../pages/annonser';
-import ClickedOnJob  from '../pages/showClickedOnJob';
+import JobPost   from '../pages/showClickedOnJob';
 
 export default function Routes() {
   return (
@@ -28,13 +28,12 @@ export default function Routes() {
         {
           <Route
             path='/annonser/:id'
-            component={ClickedOnJob}
+            component={JobPost}
           />
         }
       
 
-        {/* redirect user to SignIn page if route does not exist and user is not authenticated */}
-        {/* <Route component={<h1> 404</h1>} /> */}
+    
       </Switch>
     </Router>
   );

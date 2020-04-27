@@ -14,9 +14,8 @@ import './styles/landing.scss';
 
 const Landing = (props) => {
 	useEffect(() => {
-		const { dispatch } = props;
-		dispatch(startSearchResults());
-	}, [props]);
+		props.dispatch(startSearchResults());
+	}, []);
 
 	const handleSubmit = () => {
 		props.history.push('/annonser');
@@ -41,7 +40,7 @@ const Landing = (props) => {
 						<h1> Latest posts </h1>
 					</Grid>
 					<Grid
-						style={{ marginBottom: '4rem' }}
+                        className='cardContainer'
 						item
 						xs={12}>
 						<Grid
@@ -53,7 +52,9 @@ const Landing = (props) => {
 									<Grid
 										key={
 											item.identifier
-										}
+                                        }
+                                        
+                                        className='carte'
 										item>
 										<Paper>
 											<Card variant='outlined' >

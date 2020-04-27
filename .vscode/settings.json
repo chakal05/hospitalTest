@@ -1,7 +1,6 @@
 {
     "prettier.tabWidth": 3,
     "prettier.singleQuote": true,
-    "prettier.quoteProps": "consistent",
     "prettier.jsxSingleQuote": true,
     "scss.lint.universalSelector": "warning",
     "scss.lint.importStatement": "warning",
@@ -10,4 +9,5 @@
     "scss.lint.float": "warning",
     "scss.lint.duplicateProperties": "warning",
     "scss.lint.boxModel": "warning",
+    "prettier.printWidth": 70,
 }
