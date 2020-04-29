@@ -12,7 +12,7 @@ const PostedJob = (props) => {
 				<div className='back'>
 					<Button
 						text={
-							'Gå tillbaka till resultaten'
+							'Till resultaten'
 						}
 						action={() => {
 							props.history.push(

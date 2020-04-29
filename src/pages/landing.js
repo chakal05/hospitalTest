@@ -32,11 +32,11 @@ const Landing = (props) => {
 				<Grid
 					container
 					justify='center'
-					className='list'>
+					className='landingPageWrapper'>
 					<Grid
 						item
 						xs={12}
-						className='secondHeader'>
+						className='pageHeader'>
 						<h1> Sista inläggen </h1>
 					</Grid>
 					<Grid
@@ -53,7 +53,7 @@ const Landing = (props) => {
 										key={
 											item.identifier
 										}
-										className='carte'
+										className='jobPostCard'
 										item>
 										<Paper>
 											<Card variant='outlined'>
@@ -72,9 +72,7 @@ const Landing = (props) => {
 																.title
 														}
 													</Typography>
-													<Typography
-														className='pos'
-														color='textSecondary'>
+													<Typography color='textSecondary'>
 														{`${item.hiringOrg.name} - ${item.jobPositionLocation.city}`}
 													</Typography>
 													<Typography

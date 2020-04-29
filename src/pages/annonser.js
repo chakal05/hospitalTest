@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { addToSaved } from '../redux/actions/savedJobs';
 import SavedJobs from '../components/savedJobs';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Entete from '../components/entete';
 import Button from '../components/button';
-import selectData from '../redux/selectors/sortByText';
+import selectData from '../redux/selectors/sortJob';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
@@ -14,17 +13,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './styles/annonser.scss';
-const useStyles = makeStyles((theme) => ({
-	title: {
-		fontSize: 14,
-	},
-	pos: {
-		marginBottom: 12,
-	},
-}));
 
 const Annonser = (props) => {
-	const classes = useStyles();
 
 	return (
 		<>
@@ -35,7 +25,8 @@ const Annonser = (props) => {
 			<Grid
 				container
 				justify='center'
-				className='annonsWrapper'>
+                className='annonsWrapper'>
+              
 				<Grid
 					item
 					xs={12}
@@ -44,7 +35,8 @@ const Annonser = (props) => {
 				</Grid>
 
 				<Grid item xs={12}>
-					<Grid
+                    <Grid
+                        className='cardContainer'
 						container
 						justify='center'
 						spacing={2}>
@@ -54,12 +46,11 @@ const Annonser = (props) => {
 								xs={12}
 								item>
 								<Paper
-									className={
-										classes.paper
-									}>
+									>
 									<Card variant='outlined'>
 										<CardContent>
-											<Typography
+                                            <Typography
+                                            className='jobTitle'
 												variant='h5'
 												component='h2'>
 												{
@@ -69,9 +60,7 @@ const Annonser = (props) => {
 												}
 											</Typography>
 											<Typography
-												className={
-													classes.pos
-												}
+												className='pos'
 												color='textSecondary'>
 												{
 													item

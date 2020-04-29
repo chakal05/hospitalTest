@@ -95,7 +95,7 @@ const JobPost = (props) => {
 								</CardContent>
 							</Card>
 						</Paper>
-						<div className='jobDescription'>
+						<div>
 							<div>
 								<h2 className='boldTitle'>
 									Om jobbet :
@@ -106,7 +106,7 @@ const JobPost = (props) => {
 										.purpose
 								}
 							</div>
-							<div className='anstallning'>
+							<div>
 								<h2 className='boldTitle'>
 									{' '}
 									Om anställningen :{' '}
@@ -121,6 +121,15 @@ const JobPost = (props) => {
 								{
 									props.hiringOrgContact
 										.addressLine
+								}
+							</div>
+							<div>
+								<h4 className='boldTitle'>
+									Publicerat:{' '}
+								</h4>
+								{
+									props.postDetail
+										.published
 								}
 							</div>
 						</div>

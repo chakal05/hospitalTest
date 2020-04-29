@@ -1,18 +1,18 @@
 @import './settings';
 
 .landingPage {
-	.list {
+	.landingPageWrapper {
 		background-color: #fff;
 		border-bottom-left-radius: 1rem;
 		border-bottom-right-radius: 1rem;
 
-		.secondHeader {
+		.pageHeader {
 			text-align: center;
 			margin: 2rem;
 			color: #15347a;
 
 			h1 {
-				font-size: 3rem;
+	 			font-size: 3rem;
 				font-weight: bold;
 			}
 		}
@@ -21,10 +21,10 @@
 			padding: 1rem;
 			margin-bottom: 3rem;
 
-			.carte {
+			.jobPostCard {
 				width: 50%;
 
-				@include PhoneVIew {
+				@include phoneView {
 					width: 100%;
 				}
 			}

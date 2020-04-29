@@ -6,23 +6,24 @@
 
 	.elevatedCard {
 		margin: 1rem;
-	}
 
-	.jobDescription {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
-
-		.anstallning {
-			margin-bottom: 0.5rem;
+		@include phoneView {
+			margin: 0;
 			margin-top: 0.5rem;
 		}
 	}
-
 	.saveBtn {
 		margin-top: -1rem;
 		text-align: right;
 	}
 	.boldTitle {
 		font-weight: 900;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+
+		@include phoneView {
+			font-size: 1.3rem;
+			
+		}
 	}
 }

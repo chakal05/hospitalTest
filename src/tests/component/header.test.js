@@ -1,9 +1,8 @@
 import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import {shallow} from '../../setupTests';
 import Header from '../../components/header';
 
 test('should render header component', () => {
-	const renderer = new ShallowRenderer();
-    renderer.render(<Header />);
-   expect(renderer.getRenderOutput()).toMatchSnapshot();
+    const wrapper = shallow(<Header/>);
+    expect(wrapper.find('.link')).to.have.lengthOf(1);
 });
