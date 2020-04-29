@@ -10,15 +10,15 @@ import Container from '@material-ui/core/Container';
 const store = storage();
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <CssBaseline />
-      <Container  maxWidth='lg'>
-        <Header />
-        <Routes />
-      </Container>
-    </Provider>
-  );
+	return (
+		<Provider store={store}>
+			<CssBaseline />
+			<Container maxWidth='lg'>
+				<Header />
+				<Routes />
+			</Container>
+		</Provider>
+	);
 };
 
 export default App;

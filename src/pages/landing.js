@@ -13,84 +13,111 @@ import Typography from '@material-ui/core/Typography';
 import './styles/landing.scss';
 
 const Landing = (props) => {
-useEffect(() => {
-props.dispatch(startSearchResults());
-}, [props]);
+	useEffect(() => {
+		props.dispatch(startSearchResults());
+	}, [props]);
 
-const handleSubmit = () => {
-props.history.push('/annonser');
-};
+	const handleSubmit = () => {
+		props.history.push('/annonser');
+	};
 
-return (
-<Route>
-<div className='landingPage'>
-<Entete title={'Sök'} onSubmit={handleSubmit} />
+	return (
+		<Route>
+			<div className='landingPage'>
+				<Entete
+					title={'Sök'}
+					onSubmit={handleSubmit}
+				/>
 
-<Grid container justify='center' className='list'>
-<Grid item xs={12} className='secondHeader'>
-<h1> Sista inläggen </h1>
-</Grid>
-<Grid className='cardContainer' item xs={12}>
-<Grid container justify='center' spacing={2}>
-{props.results.map((item) => (
-<Grid
-key={item.identifier}
-className='carte'
-item>
-<Paper>
-<Card variant='outlined'>
-<CardContent>
-<Typography
-color='textSecondary'
-gutterBottom>
-Ny
-</Typography>
-<Typography
-variant='h5'
-component='h2'>
-{item.jobPositionTitle.title}
-</Typography>
-<Typography
-className='pos'
-color='textSecondary'>
-{`${item.hiringOrg.name} - ${item.jobPositionLocation.city}`}
-</Typography>
-<Typography
-variant='body2'
-component='p'>
-{`Start datum: ${item.postDetail.startDate}`}
-</Typography>
-<Typography
-variant='body2'
-component='p'>
-{`Published: ${item.postDetail.published}`}
-</Typography>
-</CardContent>
-<CardActions>
-<Link
-to={`/annonser/${item.identifier}`}>
-<Button text={'Läs mer'} />
-</Link>
-</CardActions>
-</Card>
-</Paper>
-</Grid>
-))}
-</Grid>
-</Grid>
-</Grid>
-</div>
-</Route>
-);
+				<Grid
+					container
+					justify='center'
+					className='list'>
+					<Grid
+						item
+						xs={12}
+						className='secondHeader'>
+						<h1> Sista inläggen </h1>
+					</Grid>
+					<Grid
+						className='cardContainer'
+						item
+						xs={12}>
+						<Grid
+							container
+							justify='center'
+							spacing={2}>
+							{props.results.map(
+								(item) => (
+									<Grid
+										key={
+											item.identifier
+										}
+										className='carte'
+										item>
+										<Paper>
+											<Card variant='outlined'>
+												<CardContent>
+													<Typography
+														color='textSecondary'
+														gutterBottom>
+														Ny
+													</Typography>
+													<Typography
+														variant='h5'
+														component='h2'>
+														{
+															item
+																.jobPositionTitle
+																.title
+														}
+													</Typography>
+													<Typography
+														className='pos'
+														color='textSecondary'>
+														{`${item.hiringOrg.name} - ${item.jobPositionLocation.city}`}
+													</Typography>
+													<Typography
+														variant='body2'
+														component='p'>
+														{`Start datum: ${item.postDetail.startDate}`}
+													</Typography>
+													<Typography
+														variant='body2'
+														component='p'>
+														{`Published: ${item.postDetail.published}`}
+													</Typography>
+												</CardContent>
+												<CardActions>
+													<Link
+														to={`/annonser/${item.identifier}`}>
+														<Button
+															text={
+																'Läs mer'
+															}
+														/>
+													</Link>
+												</CardActions>
+											</Card>
+										</Paper>
+									</Grid>
+								)
+							)}
+						</Grid>
+					</Grid>
+				</Grid>
+			</div>
+		</Route>
+	);
 };
 
 const propsToState = (state) => {
-return {
-// Get the last 4 elements of the array
-results: state.results.slice(
-Math.max(state.results.length - 4, 0)
-),
-};
+	return {
+		// Get the last 4 elements of the array
+		results: state.results.slice(
+			Math.max(state.results.length - 4, 0)
+		),
+	};
 };
 
 export default connect(propsToState)(Landing);

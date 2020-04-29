@@ -1,9 +1,8 @@
-$btnColor : #13357B;
-$btnTextColor : #fff;
-
+$btnColor: #13357b;
+$btnTextColor: #fff;
 
 @mixin PhoneVIew {
-    @media (max-width: 600px) and (min-width:  320px ) {
-        @content;
-    }
+	@media (max-width: 600px) and (min-width: 320px) {
+		@content;
+	}
 }

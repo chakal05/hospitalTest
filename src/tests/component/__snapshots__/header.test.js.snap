@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render header component 1`] = `
+<ForwardRef(WithStyles)
+  className="AppBar"
+  elevation={0}
+  position="static"
+>
+  <ForwardRef(WithStyles)>
+    <a
+      className="link"
+      href="/"
+    >
+       
+      Kerja
+       
+    </a>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
+`;

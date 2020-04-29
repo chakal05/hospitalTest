@@ -5,16 +5,15 @@ import JobPost from '../components/jobPost';
 import Button from '../components/button';
 import './styles/clickOnJob.scss';
 
-
 const PostedJob = (props) => {
-
-
 	return (
 		<div>
 			<div className='btnContainer'>
 				<div className='back'>
 					<Button
-						text={'Gå tillbaka till resultaten'}
+						text={
+							'Gå tillbaka till resultaten'
+						}
 						action={() => {
 							props.history.push(
 								'/annonser'

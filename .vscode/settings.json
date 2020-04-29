@@ -1,4 +1,6 @@
 {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
     "prettier.tabWidth": 3,
     "prettier.singleQuote": true,
     "prettier.jsxSingleQuote": true,
@@ -9,5 +11,5 @@
     "scss.lint.float": "warning",
     "scss.lint.duplicateProperties": "warning",
     "scss.lint.boxModel": "warning",
-    "prettier.printWidth": 70,
+    "prettier.printWidth": 50,
 }

@@ -1,13 +1,13 @@
 const jobSearchReducerDefaultState = [];
 
 export default (
-  state = jobSearchReducerDefaultState,
-  action
+	state = jobSearchReducerDefaultState,
+	action
 ) => {
-  switch (action.type) {
-    case 'RETRIVE_RESULTS':
-      return [...action.results];
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case 'RETRIEVE_RESULTS':
+			return [...action.results];
+		default:
+			return state;
+	}
 };

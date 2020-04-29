@@ -20,26 +20,40 @@ const JobPost = (props) => {
 							variant='h4'
 							component='h3'
 							className='boldTitle'>
-							{props.jobPositionTitle.title}
+							{
+								props.jobPositionTitle
+									.title
+							}
 						</Typography>
-						<Typography variant='h4' component='h3'>
+						<Typography
+							variant='h4'
+							component='h3'>
 							{props.hiringOrg.name}
 						</Typography>
-						<Typography variant='h5' component='h2'>
-							{props.jobPositionTitle.title}
+						<Typography
+							variant='h5'
+							component='h2'>
+							{
+								props.jobPositionTitle
+									.title
+							}
 						</Typography>
-						<Typography style={{ margin: '3px' }}>
+						<Typography
+							style={{ margin: '3px' }}>
 							{`Kommun: ${props.hiringOrgContact.addressLine
 								.split(',')
 								.pop()} `}
 						</Typography>
-						<Typography style={{ margin: '3px' }}>
+						<Typography
+							style={{ margin: '3px' }}>
 							{`Varaktighet: ${props.classification.duration}`}
 						</Typography>
 						<Typography>
 							{`Anställningsform: ${props.classification.TypeOfEmployment}`}
 						</Typography>
-						<Paper className='elevatedCard' elevation={3}>
+						<Paper
+							className='elevatedCard'
+							elevation={3}>
 							<Card>
 								<CardContent>
 									<div>
@@ -47,28 +61,33 @@ const JobPost = (props) => {
 											{' '}
 											Kvalifikationer{' '}
 										</h2>
-										{props.qualificationsRequiredSummary
+										{props
+											.qualificationsRequiredSummary
 											.education && (
 											<Typography>
 												{`- ${props.qualificationsRequiredSummary.education}`}{' '}
 											</Typography>
 										)}
 
-										{props.qualificationsRequiredSummary
-											.hasExperience.type && (
+										{props
+											.qualificationsRequiredSummary
+											.hasExperience
+											.type && (
 											<Typography>
 												{`- ${props.qualificationsRequiredSummary.hasExperience.type}`}
-										
 											</Typography>
 										)}
-										{props.qualificationsRequiredSummary
-											.hasDriverLicence.category && (
+										{props
+											.qualificationsRequiredSummary
+											.hasDriverLicence
+											.category && (
 											<Typography>
 												{` - Driver licence: ${
 													props
 														.qualificationsRequiredSummary
 														.hasDriverLicence
-														.category || 'ingen'
+														.category ||
+													'ingen'
 												}`}
 											</Typography>
 										)}
@@ -78,8 +97,14 @@ const JobPost = (props) => {
 						</Paper>
 						<div className='jobDescription'>
 							<div>
-								<h2 className='boldTitle'>Om jobbet :</h2>
-								{props.jobPositionPurpose.purpose}
+								<h2 className='boldTitle'>
+									Om jobbet :
+								</h2>
+								{
+									props
+										.jobPositionPurpose
+										.purpose
+								}
 							</div>
 							<div className='anstallning'>
 								<h2 className='boldTitle'>
@@ -89,58 +114,68 @@ const JobPost = (props) => {
 								{`Lön: ${props.compensation.salaryType}`}
 							</div>
 							<div>
-								<h2 className='boldTitle'> Adress : </h2>
-								{props.hiringOrgContact.addressLine}
+								<h2 className='boldTitle'>
+									{' '}
+									Adress :{' '}
+								</h2>
+								{
+									props.hiringOrgContact
+										.addressLine
+								}
 							</div>
 						</div>
 					</CardContent>
 
-                    <CardActions>
-                 
-                    <Button
-                        text={'Save'}
-                        action={() => {
-                            const savedJobs = JSON.parse(
-                                localStorage.getItem(
-                                    'savedJobs'
-                                )
-                            );
+					<CardActions>
+						<Button
+							text={'Save'}
+							action={() => {
+								const savedJobs = JSON.parse(
+									localStorage.getItem(
+										'savedJobs'
+									)
+								);
 
-                            // if SavedJobs is empty
+								// if SavedJobs is empty
 
-                            if (!savedJobs) {
-                                props.dispatch(
-                                    addToSaved(props)
-                                );
-                                localStorage.setItem(
-                                    'savedJobs',
-                                    JSON.stringify([props])
-                                );
+								if (!savedJobs) {
+									props.dispatch(
+										addToSaved(props)
+									);
+									localStorage.setItem(
+										'savedJobs',
+										JSON.stringify([
+											props,
+										])
+									);
+								} else {
+									const check = savedJobs.find(
+										(element) =>
+											element.identifier ===
+											props.identifier
+									);
 
-
-                            } else {
-                            const check = savedJobs.find(
-                                (element) =>
-                                    element.identifier ===
-                                    props.identifier
-                            );
-
-
-                            if (check === undefined) {
-                                props.dispatch(
-                                    addToSaved(props)
-                                );
-                                localStorage.setItem(
-                                    'savedJobs',
-                                    JSON.stringify([props])
-                                );
-                            } else {
-                                alert('Redan sparade')
-                            }
-                           }
-                        }}
-                    />
-                    </CardActions>
+									if (
+										check === undefined
+									) {
+										props.dispatch(
+											addToSaved(props)
+										);
+										localStorage.setItem(
+											'savedJobs',
+											JSON.stringify([
+												props,
+											])
+										);
+									} else {
+										alert(
+											'Redan sparade'
+										);
+									}
+								}
+							}}
+						/>
+					</CardActions>
 				</Card>
 			</Paper>
 		</div>

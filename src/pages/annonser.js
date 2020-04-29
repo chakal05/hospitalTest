@@ -15,121 +15,178 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './styles/annonser.scss';
 const useStyles = makeStyles((theme) => ({
-title: {
-fontSize: 14,
-},
-pos: {
-marginBottom: 12,
-},
+	title: {
+		fontSize: 14,
+	},
+	pos: {
+		marginBottom: 12,
+	},
 }));
 
 const Annonser = (props) => {
-const classes = useStyles();
+	const classes = useStyles();
 
-return (
-<>
-<Entete
-title={`Hittade: ${props.results.length}`}
-onSubmit={() => {}}
-/>
-<Grid container justify='center' className='annonsWrapper'>
-<Grid item xs={12} className='savedJob'>
-<SavedJobs />
-</Grid>
+	return (
+		<>
+			<Entete
+				title={`Hittade: ${props.results.length}`}
+				onSubmit={() => {}}
+			/>
+			<Grid
+				container
+				justify='center'
+				className='annonsWrapper'>
+				<Grid
+					item
+					xs={12}
+					className='savedJob'>
+					<SavedJobs />
+				</Grid>
 
-<Grid item xs={12}>
-<Grid container justify='center' spacing={2}>
-{props.results.map((item) => (
-    <Grid key={item.identifier} xs={12} item>
-        <Paper className={classes.paper}>
-            <Card variant='outlined'>
-                <CardContent>
-                    <Typography
-                        variant='h5'
-                        component='h2'>
-                        {item.jobPositionTitle.title}
-                    </Typography>
-                    <Typography
-                        className={classes.pos}
-                        color='textSecondary'>
-                        {item.hiringOrg.name} -{' '}
-                        {item.hiringOrgContact.addressLine
-                            .split(',')
-                            .pop()}
-                    </Typography>
-                    <Typography component='h5'>
-                        {item.jobPositionTitle.title}
-                    </Typography>
+				<Grid item xs={12}>
+					<Grid
+						container
+						justify='center'
+						spacing={2}>
+						{props.results.map((item) => (
+							<Grid
+								key={item.identifier}
+								xs={12}
+								item>
+								<Paper
+									className={
+										classes.paper
+									}>
+									<Card variant='outlined'>
+										<CardContent>
+											<Typography
+												variant='h5'
+												component='h2'>
+												{
+													item
+														.jobPositionTitle
+														.title
+												}
+											</Typography>
+											<Typography
+												className={
+													classes.pos
+												}
+												color='textSecondary'>
+												{
+													item
+														.hiringOrg
+														.name
+												}{' '}
+												-{' '}
+												{item.hiringOrgContact.addressLine
+													.split(',')
+													.pop()}
+											</Typography>
+											<Typography component='h5'>
+												{
+													item
+														.jobPositionTitle
+														.title
+												}
+											</Typography>
 
-                    <Typography component='p'>
-                        {` Duration: ${item.classification.duration}`}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Link
-                        to={`/annonser/${item.identifier}`}>
-                        <Button text={'See more'} />
-                    </Link>
+											<Typography component='p'>
+												{` Duration: ${item.classification.duration}`}
+											</Typography>
+										</CardContent>
+										<CardActions>
+											<Link
+												to={`/annonser/${item.identifier}`}>
+												<Button
+													text={
+														'See more'
+													}
+												/>
+											</Link>
 
-                    <Button
-                        text={'Save'}
-                        action={() => {
-                            const savedJobs = JSON.parse(
-                                localStorage.getItem(
-                                    'savedJobs'
-                                )
-                            );
+											<Button
+												text={'Save'}
+												action={() => {
+													const savedJobs = JSON.parse(
+														localStorage.getItem(
+															'savedJobs'
+														)
+													);
 
-                            // if SavedJobs is empty
+													// if SavedJobs is empty
 
-                            if (!savedJobs) {
-                                props.dispatch(
-                                    addToSaved(item)
-                                );
-                                localStorage.setItem(
-                                    'savedJobs',
-                                    JSON.stringify([item])
-                                );
+													if (
+														!savedJobs
+													) {
+														props.dispatch(
+															addToSaved(
+																item
+															)
+														);
+														localStorage.setItem(
+															'savedJobs',
+															JSON.stringify(
+																[
+																	item,
+																]
+															)
+														);
+													} else {
+														const check = savedJobs.find(
+															(
+																element
+															) =>
+																element.identifier ===
+																item.identifier
+														);
 
-
-                            } else {
-                            const check = savedJobs.find(
-                                (element) =>
-                                    element.identifier ===
-                                    item.identifier
-                            );
-
-
-                            if (check === undefined) {
-                                props.dispatch(
-                                    addToSaved(item)
-                                );
-                                localStorage.setItem(
-                                    'savedJobs',
-                                    JSON.stringify([item])
-                                );
-                            } else {
-                                alert('Redan sparade')
-                            }
-                           }
-                        }}
-                    />
-                </CardActions>
-            </Card>
-        </Paper>
-    </Grid>
-))}
-</Grid>
-</Grid>
-</Grid>
-</>
-);
+														if (
+															check ===
+															undefined
+														) {
+															props.dispatch(
+																addToSaved(
+																	item
+																)
+															);
+															localStorage.setItem(
+																'savedJobs',
+																JSON.stringify(
+																	[
+																		item,
+																	]
+																)
+															);
+														} else {
+															alert(
+																'Redan sparade'
+															);
+														}
+													}
+												}}
+											/>
+										</CardActions>
+									</Card>
+								</Paper>
+							</Grid>
+						))}
+					</Grid>
+				</Grid>
+			</Grid>
+		</>
+	);
 };
 
 const mapPropsToTheState = (state) => {
-return {
-results: selectData(state.results, state.filter),
-};
+	return {
+		results: selectData(
+			state.results,
+			state.filter
+		),
+	};
 };
 
-export default connect(mapPropsToTheState)(Annonser);
+export default connect(mapPropsToTheState)(
+	Annonser
+);
