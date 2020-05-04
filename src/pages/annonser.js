@@ -1,166 +1,158 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addToSaved } from '../redux/actions/savedJobs';
+import {
+	sortbyJobType,
+	sortByPublishedDay,
+	sortbyCity,
+} from '../redux/actions/filters';
+import moment from 'moment';
 import SavedJobs from '../components/savedJobs';
-import { Link } from 'react-router-dom';
+import JobPostList from '../components/jobPostList';
 import Entete from '../components/entete';
-import Button from '../components/button';
 import selectData from '../redux/selectors/sortJob';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Select from '../components/select';
 import './styles/annonser.scss';
 
 const Annonser = (props) => {
-
+	const [city, setCity] = useState('');
+	const [type, setType] = useState('');
+	const [published, setPublished] = useState('');
 	return (
 		<>
 			<Entete
 				title={`Hittade: ${props.results.length}`}
 				onSubmit={() => {}}
 			/>
-			<Grid
-				container
-				justify='center'
-                className='annonsWrapper'>
-              
-				<Grid
-					item
-					xs={12}
-					className='savedJob'>
+			<Grid container justify='center' className='annonsWrapper'>
+				<Grid item xs={12}>
+					<Grid
+						container
+						justify='center'
+						className='dropdownContainer'>
+						<Grid  item className='dropdown'>
+							<Select
+								title='Location'
+								value={city}
+								handleChange={(event) => {
+									console.log(event.target.value);
+									setCity(event.target.value);
+									if (event.target.value === 'All') {
+										props.dispatch(
+											sortbyCity({ city: '' })
+										);
+									} else {
+										props.dispatch(
+											sortbyCity({
+												city: event.target.value,
+											})
+										);
+									}
+								}}
+								options={[
+									'All',
+									'Umeå',
+									'Gävle',
+									'Stockholm',
+									'Trollhättan',
+								]}
+							/>
+						</Grid>
+						<Grid  className='dropdown'>
+							<Select
+								title='Job type'
+								value={type}
+								handleChange={(event) => {
+									setType(event.target.value);
+									if (event.target.value === 'All') {
+										props.dispatch(
+											sortbyJobType({ jobType: '' })
+										);
+									} else {
+										props.dispatch(
+											sortbyJobType({
+												jobType: event.target.value,
+											})
+										);
+									}
+								}}
+								options={['All', 'Heltid', 'Deltid']}
+							/>
+						</Grid>
+						<Grid  className='dropdown'>
+							<Select
+								title='Published'
+								value={published}
+								handleChange={(event) => {
+									setPublished(event.target.value);
+
+									if (event.target.value === 'Today') {
+										const day = moment()
+											.format()
+											.substr(0, 10);
+										props.dispatch(
+											sortByPublishedDay({
+												published: [day, 'today'],
+											})
+										);
+									} else if (
+										event.target.value === 'Last 7 days'
+									) {
+										const day = moment().subtract(
+											7,
+											'days'
+										);
+										const day_7 = day
+											.format()
+											.substr(0, 10);
+
+										props.dispatch(
+											sortByPublishedDay({
+												published: [day_7, 'last_7_days'],
+											})
+										);
+									} else if (
+										event.target.value === 'Last 30 days'
+									) {
+										const day = moment().subtract(
+											30,
+											'days'
+										);
+										const day_30 = day
+											.format()
+											.substr(0, 10);
+										props.dispatch(
+											sortByPublishedDay({
+												published: [
+													day_30,
+													'last_30_days',
+												],
+											})
+										);
+									} else if (event.target.value === 'All') {
+										props.dispatch(
+											sortByPublishedDay({
+												published: ['', 'all'],
+											})
+										);
+									}
+								}}
+								options={[
+									'All',
+									'Today',
+									'Last 7 days',
+									'Last 30 days',
+								]}
+							/>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item xs={12} className='savedJob'>
 					<SavedJobs />
 				</Grid>
 
 				<Grid item xs={12}>
-                    <Grid
-                        className='cardContainer'
-						container
-						justify='center'
-						spacing={2}>
-						{props.results.map((item) => (
-							<Grid
-								key={item.identifier}
-								xs={12}
-								item>
-								<Paper
-									>
-									<Card variant='outlined'>
-										<CardContent>
-                                            <Typography
-                                            className='jobTitle'
-												variant='h5'
-												component='h2'>
-												{
-													item
-														.jobPositionTitle
-														.title
-												}
-											</Typography>
-											<Typography
-												className='pos'
-												color='textSecondary'>
-												{
-													item
-														.hiringOrg
-														.name
-												}{' '}
-												-{' '}
-												{item.hiringOrgContact.addressLine
-													.split(',')
-													.pop()}
-											</Typography>
-											<Typography component='h5'>
-												{
-													item
-														.jobPositionTitle
-														.title
-												}
-											</Typography>
-
-											<Typography component='p'>
-												{` Duration: ${item.classification.duration}`}
-											</Typography>
-										</CardContent>
-										<CardActions>
-											<Link
-												to={`/annonser/${item.identifier}`}>
-												<Button
-													text={
-														'See more'
-													}
-												/>
-											</Link>
-
-											<Button
-												text={'Save'}
-												action={() => {
-													const savedJobs = JSON.parse(
-														localStorage.getItem(
-															'savedJobs'
-														)
-													);
-
-													// if SavedJobs is empty
-
-													if (
-														!savedJobs
-													) {
-														props.dispatch(
-															addToSaved(
-																item
-															)
-														);
-														localStorage.setItem(
-															'savedJobs',
-															JSON.stringify(
-																[
-																	item,
-																]
-															)
-														);
-													} else {
-														const check = savedJobs.find(
-															(
-																element
-															) =>
-																element.identifier ===
-																item.identifier
-														);
-
-														if (
-															check ===
-															undefined
-														) {
-															props.dispatch(
-																addToSaved(
-																	item
-																)
-															);
-															localStorage.setItem(
-																'savedJobs',
-																JSON.stringify(
-																	[
-																		item,
-																	]
-																)
-															);
-														} else {
-															alert(
-																'Redan sparade'
-															);
-														}
-													}
-												}}
-											/>
-										</CardActions>
-									</Card>
-								</Paper>
-							</Grid>
-						))}
-					</Grid>
+					<JobPostList results={props.results} />
 				</Grid>
 			</Grid>
 		</>
@@ -169,13 +161,8 @@ const Annonser = (props) => {
 
 const mapPropsToTheState = (state) => {
 	return {
-		results: selectData(
-			state.results,
-			state.filter
-		),
+		results: selectData(state.results, state.filter),
 	};
 };
 
-export default connect(mapPropsToTheState)(
-	Annonser
-);
+export default connect(mapPropsToTheState)(Annonser);

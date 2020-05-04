@@ -1,9 +1,26 @@
+@import '../styles/settings';
+
 .annonsWrapper {
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
 	padding: 1rem;
 	background-color: #fff;
 
+    .dropdownContainer{
+        text-align: center;
+        margin-top: 1rem;
+
+        @include phoneView {
+            margin-top: .1rem;
+        }
+
+        .dropdown{
+            width: 30%;
+            @include phoneView {
+                width: 100%;
+            }
+        }
+    }
 	.savedJob {
 		text-align: right;
 		margin-top: 2rem;

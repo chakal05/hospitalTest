@@ -12,30 +12,24 @@ const Entete = (props) => {
 
 	return (
 		<div className='entetePage'>
-			<Grid
-				container
-				justify='center'
-				className='blue'>
+			<Grid container justify='center' className='blue'>
 				<Grid item xs={12} className='title'>
 					<h1> {props.title}</h1>
 				</Grid>
-				<Grid
-					item
-					xs={10}
-					className='searchInput'>
+				<Grid item xs={10} className='searchInput'>
 					<Paper
 						component='form'
-						name='myForm'
 						className='paper'
-						onSubmit={ (e) => {
+						onSubmit={(e) => {
 							e.preventDefault();
 							props.dispatch(
 								sortByText({
 									text: textInput,
 								})
 							);
+
 							props.onSubmit();
-						} }>
+						}}>
 						<InputBase
 							className='input'
 							placeholder='Sök efter yrke eller stad'
@@ -47,8 +41,10 @@ const Entete = (props) => {
 						<Button
 							type='submit'
 							variant='contained'
-							className='btnSearch'
-						> Sok </Button>
+							className='btnSearch'>
+							{' '}
+							Sok{' '}
+						</Button>
 					</Paper>
 				</Grid>
 			</Grid>

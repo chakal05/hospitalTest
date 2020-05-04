@@ -8,7 +8,7 @@
 
 		.pageHeader {
 			text-align: center;
-			margin: 2rem;
+			margin-top: 3rem;
 			color: #15347a;
 
 			h1 {
@@ -19,11 +19,14 @@
 
 		.cardContainer {
 			padding: 1rem;
-			margin-bottom: 3rem;
+			margin-top: 1rem;
 
 			.jobPostCard {
-				width: 50%;
+                width: 40%;
 
+            @media (max-width:901px) and (min-width:501px) {
+                width: 100%;
+            }
 				@include phoneView {
 					width: 100%;
 				}

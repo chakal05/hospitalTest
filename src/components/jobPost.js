@@ -40,9 +40,8 @@ const JobPost = (props) => {
 						</Typography>
 						<Typography
 							style={{ margin: '3px' }}>
-							{`Kommun: ${props.hiringOrgContact.addressLine
-								.split(',')
-								.pop()} `}
+							{`Kommun: ${props.jobPositionLocation.city
+                            }`}
 						</Typography>
 						<Typography
 							style={{ margin: '3px' }}>
