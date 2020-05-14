@@ -13,7 +13,7 @@ import selectData from '../redux/selectors/sortJob';
 import Grid from '@material-ui/core/Grid';
 import Select from '../components/select';
 import './styles/annonser.scss';
-
+import Button from '../components/button'
 const Annonser = (props) => {
 	const [city, setCity] = useState('');
 	const [type, setType] = useState('');
@@ -32,7 +32,7 @@ const Annonser = (props) => {
 						className='dropdownContainer'>
 						<Grid  item className='dropdown'>
 							<Select
-								title='Location'
+								title='Stad'
 								value={city}
 								handleChange={(event) => {
 									console.log(event.target.value);
@@ -60,7 +60,7 @@ const Annonser = (props) => {
 						</Grid>
 						<Grid  className='dropdown'>
 							<Select
-								title='Job type'
+								title='Omfattning'
 								value={type}
 								handleChange={(event) => {
 									setType(event.target.value);
@@ -81,7 +81,7 @@ const Annonser = (props) => {
 						</Grid>
 						<Grid  className='dropdown'>
 							<Select
-								title='Published'
+								title='Publicerad'
 								value={published}
 								handleChange={(event) => {
 									setPublished(event.target.value);
@@ -152,7 +152,7 @@ const Annonser = (props) => {
 				</Grid>
 
 				<Grid item xs={12}>
-					<JobPostList results={props.results} />
+                    <JobPostList results={props.results} text={'Spara'} />
 				</Grid>
 			</Grid>
 		</>

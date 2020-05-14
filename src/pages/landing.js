@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import JobPostList from '../components/jobPostList';
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Entete from '../components/entete';
@@ -20,14 +21,15 @@ const Landing = (props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
-	const handleSubmit = () => {
-		props.history.push('/annonser');
-	};
-
 	return (
 		<Route>
 			<div className='landingPage'>
-				<Entete title={'Sök'} onSubmit={handleSubmit} />
+				<Entete
+					title={'Sök'}
+					onSubmit={() => {
+						props.history.push('/annonser');
+					}}
+				/>
 				<Grid
 					container
 					justify='center'
@@ -35,13 +37,7 @@ const Landing = (props) => {
 					<Grid item xs={12} className='pageHeader'>
 						<h1> Sista inläggen </h1>
 					</Grid>
-					{/* <Grid item xs={12}>
-						<Grid container justify='center'>
-							<Grid item  className='jobPostCard'>
-								<JobPostList results={props.results} />
-							</Grid>
-						</Grid>
-    </Grid> */}
+
 					<Grid className='cardContainer' item xs={12}>
 						<Grid container justify='center' spacing={2}>
 							{props.results.map((item) => (

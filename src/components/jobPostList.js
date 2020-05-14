@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { addToSaved } from '../redux/actions/savedJobs';
+import {
+	addToSaved,
+	removeFromSavedJobs,
+} from '../redux/actions/savedJobs';
 import Button from '../components/button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -15,7 +18,7 @@ const jobPostList = (props) => {
 	return (
 		<>
 			{props.results.map((item) => (
-				<Grid key={item.identifier}  item>
+				<Grid key={item.identifier} item>
 					<Paper>
 						<Card variant='outlined'>
 							<CardContent>
@@ -46,39 +49,50 @@ const jobPostList = (props) => {
 							</CardContent>
 							<CardActions>
 								<Link to={`/annonser/${item.identifier}`}>
-									<Button text={'See more'} />
+									<Button text={'Läs mer'} />
 								</Link>
 
 								<Button
-									text={'Save'}
+									text={props.text}
 									action={() => {
 										const savedJobs = JSON.parse(
 											localStorage.getItem('savedJobs')
-										);
+                                        );
+                                        
+										// Remove item
 
-										// if SavedJobs is empty
-
-										if (!savedJobs) {
-											props.dispatch(addToSaved(item));
+										if (props.text === 'Radera') {
+											const toRemove = savedJobs;
+											props.dispatch(
+												removeFromSavedJobs(item)
+											);
+											toRemove.splice(item, 1);
 											localStorage.setItem(
 												'savedJobs',
-												JSON.stringify([item])
+												JSON.stringify(toRemove)
 											);
-										} else {
-											const check = savedJobs.find(
+										}
+
+										// Add item
+
+										if (props.text === 'Spara') {
+											const check = savedJobs.filter(
 												(element) =>
 													element.identifier ===
 													item.identifier
 											);
 
-											if (check === undefined) {
+											if (check.length === 0) {
+												const toAdd = savedJobs;
 												props.dispatch(addToSaved(item));
+
+												toAdd.push(item);
 												localStorage.setItem(
 													'savedJobs',
-													JSON.stringify([item])
+													JSON.stringify(toAdd)
 												);
 											} else {
-												alert('Redan sparade');
+												return alert('Redan sparade');
 											}
 										}
 									}}

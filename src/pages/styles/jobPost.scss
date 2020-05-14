@@ -1,29 +1,50 @@
 @import './settings';
+.jobPostPage {
+	font-family: 'Roboto';
 
-.jobPostWrapper {
-	border-bottom-left-radius: 1rem;
-	border-bottom-right-radius: 1rem;
+	.btnContainer {
+		background-color: #fff;
+		padding: 1rem 0 2rem;
 
-	.elevatedCard {
-		margin: 1rem;
+		.back {
+			padding-left: 1rem;
+		}
 
-		@include phoneView {
-			margin: 0;
-			margin-top: 0.5rem;
+		.savedJobs {
+			margin-top: -2.3rem;
+			text-align: right;
+			padding-right: 1rem;
 		}
 	}
-	.saveBtn {
-		margin-top: -1rem;
-		text-align: right;
-	}
-	.boldTitle {
-		font-weight: 900;
-        margin-bottom: 0.5rem;
-        margin-top: 0.5rem;
+	.jobPostWrapper {
+		border-bottom-left-radius: 1rem;
+		border-bottom-right-radius: 1rem;
 
-		@include phoneView {
-			font-size: 1.3rem;
-			
+		.elevatedCard {
+			margin: 1rem;
+
+			@include phoneView {
+				margin: 0;
+				margin-top: 0.5rem;
+			}
+		}
+		.saveBtn {
+			margin-top: -1rem;
+			text-align: right;
+		}
+		.boldTitle {
+			font-weight: 900;
+			margin-bottom: 0.5rem;
+			margin-top: 0.5rem;
+
+			@include phoneView {
+				font-size: 1.3rem;
+			}
+		}
+
+		.description {
+			padding: 1rem;
+			font-size: 1.1rem;
 		}
 	}
 }
