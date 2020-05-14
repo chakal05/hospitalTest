@@ -24,8 +24,7 @@ const PostedJob = (props) => {
 				<div className='savedJobs'>
 					<SavedJobs />
 				</div>
-            </div>
-            
+			</div>
 			<div className='jobPostWrapper'>
 				<Paper>
 					<Card variant='outlined'>
@@ -93,7 +92,13 @@ const PostedJob = (props) => {
 							<div>
 								<div>
 									<h2 className='boldTitle'>Om jobbet :</h2>
-									<p className='description'> {props.result.jobPositionPurpose.purpose} </p>
+									<p className='description'>
+										{' '}
+										{
+											props.result.jobPositionPurpose
+												.purpose
+										}{' '}
+									</p>
 								</div>
 								<div>
 									<h2 className='boldTitle'>
@@ -122,23 +127,25 @@ const PostedJob = (props) => {
 									);
 
 									const check = savedJobs.filter(
-                                        (element) =>
-                                            element.identifier ===
-                                            props.result.identifier
-                                    );
+										(element) =>
+											element.identifier ===
+											props.result.identifier
+									);
 
-                                    if (check.length === 0) {
-                                        const toAdd = savedJobs;
-                                        props.dispatch(addToSaved(props.result));
+									if (check.length === 0) {
+										const toAdd = savedJobs;
+										props.dispatch(
+											addToSaved(props.result)
+										);
 
-                                        toAdd.push(props.result);
-                                        localStorage.setItem(
-                                            'savedJobs',
-                                            JSON.stringify(toAdd)
-                                        );
-                                    } else {
-                                        return alert('Redan sparade');
-                                    }
+										toAdd.push(props.result);
+										localStorage.setItem(
+											'savedJobs',
+											JSON.stringify(toAdd)
+										);
+									} else {
+										return alert('Redan sparade');
+									}
 								}}
 							/>
 						</CardActions>

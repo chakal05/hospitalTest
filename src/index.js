@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './firebase/index';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import store from './redux/store/index';
 import history from './services/history';

@@ -13,7 +13,7 @@ import selectData from '../redux/selectors/sortJob';
 import Grid from '@material-ui/core/Grid';
 import Select from '../components/select';
 import './styles/annonser.scss';
-import Button from '../components/button'
+
 const Annonser = (props) => {
 	const [city, setCity] = useState('');
 	const [type, setType] = useState('');

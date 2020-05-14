@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import JobPostList from '../components/jobPostList';
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Entete from '../components/entete';
