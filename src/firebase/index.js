@@ -4,8 +4,7 @@ const firebaseConfig = {
   apiKey:
   process.env.REACT_APP_GOOGLE_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL:
-   process.env.REACT_APP_DB_URL,
+  databaseURL:'https://expensify-2c9e2.firebaseio.com',
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_SENDER_ID,
