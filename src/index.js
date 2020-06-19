@@ -15,7 +15,6 @@ import './index.scss';
 
 const storage = store();
 function App() {
-   
 	return (
 		<Provider store={storage}>
 			<CssBaseline />

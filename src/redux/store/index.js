@@ -9,8 +9,7 @@ import jobSearchReducer from '../reducers/jobSearchReducer';
 import filterReducer from '../reducers/filterReducer';
 import savedReducer from '../reducers/savedJobsReducer';
 const composeEnhencers =
-	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
-	compose;
+	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
 	const store = createStore(

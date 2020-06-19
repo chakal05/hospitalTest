@@ -3,9 +3,7 @@ export const addToSaved = (job) => ({
 	job,
 });
 
-export const removeFromSavedJobs = ({
-	identifier,
-}) => ({
+export const removeFromSavedJobs = ({ identifier }) => ({
 	type: 'REMOVE_JOB',
 	job: {
 		identifier,

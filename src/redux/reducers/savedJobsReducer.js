@@ -1,7 +1,4 @@
-const savedJobs =
-	JSON.parse(
-		localStorage.getItem('savedJobs')
-	) || [];
+const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
 
 export default (state = savedJobs, action) => {
 	switch (action.type) {
@@ -10,9 +7,7 @@ export default (state = savedJobs, action) => {
 
 		case 'REMOVE_JOB':
 			return state.filter(
-				(i) =>
-					i.identifier !==
-					action.job.identifier
+				(i) => i.identifier !== action.job.identifier
 			);
 
 		default:

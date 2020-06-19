@@ -1,26 +1,21 @@
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey:
-  process.env.REACT_APP_GOOGLE_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL:'https://expensify-2c9e2.firebaseio.com',
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_SENDER_ID,
-  appId:
-   process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+	apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+	databaseURL: 'https://expensify-2c9e2.firebaseio.com',
+	projectId: process.env.REACT_APP_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_SENDER_ID,
+	appId: process.env.REACT_APP_APP_ID,
+	measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-
-
 //Add a new job post to dB manually
-
 
 // const newJobPost = {
 //     compensation:{
@@ -48,7 +43,7 @@ const database = firebase.database();
 //   },
 //   jobPositionPurpose: {
 //     purpose: `DEDICARE söker för längre uppdrag med start omgående och över sommaren tom. v.33. Behovet är tre leg.sjuksköterskor med minst två års yrkeserfarenhet inom HSV/ÄBO/SÄBO.
-//     Vi söker dig med bostadsort inom/nära vgr / södra Sverige. Prova något annat, träffa nya kollegor och samtidigt kompetensutveckla dig. 
+//     Vi söker dig med bostadsort inom/nära vgr / södra Sverige. Prova något annat, träffa nya kollegor och samtidigt kompetensutveckla dig.
 //     Utöver konkurrenskraftig lön har vi möjlighet att stå för resor och boende om uppdraget är på annan ort. Då vi har kollektivavtal får du även tjänstepension. Du har viss möjlighet att påverka ditt eget schema. Uppdraget kommer att vara förlagt på rotationsschema dag, kväll, helg och  enbart natt.
 //     Tveka inte att höra av dig så kan vi berätta mer. `,
 //   },

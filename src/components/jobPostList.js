@@ -57,8 +57,8 @@ const jobPostList = (props) => {
 									action={() => {
 										const savedJobs = JSON.parse(
 											localStorage.getItem('savedJobs')
-                                        );
-                                        
+										);
+
 										// Remove item
 
 										if (props.text === 'Radera') {

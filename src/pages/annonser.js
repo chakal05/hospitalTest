@@ -30,7 +30,7 @@ const Annonser = (props) => {
 						container
 						justify='center'
 						className='dropdownContainer'>
-						<Grid  item className='dropdown'>
+						<Grid item className='dropdown'>
 							<Select
 								title='Stad'
 								value={city}
@@ -58,7 +58,7 @@ const Annonser = (props) => {
 								]}
 							/>
 						</Grid>
-						<Grid  className='dropdown'>
+						<Grid className='dropdown'>
 							<Select
 								title='Omfattning'
 								value={type}
@@ -79,7 +79,7 @@ const Annonser = (props) => {
 								options={['All', 'Heltid', 'Deltid']}
 							/>
 						</Grid>
-						<Grid  className='dropdown'>
+						<Grid className='dropdown'>
 							<Select
 								title='Publicerad'
 								value={published}
@@ -152,7 +152,7 @@ const Annonser = (props) => {
 				</Grid>
 
 				<Grid item xs={12}>
-                    <JobPostList results={props.results} text={'Spara'} />
+					<JobPostList results={props.results} text={'Spara'} />
 				</Grid>
 			</Grid>
 		</>
