@@ -37,7 +37,7 @@ const Annonser = (props) => {
 								handleChange={(event) => {
 									console.log(event.target.value);
 									setCity(event.target.value);
-									if (event.target.value === 'All') {
+									if (event.target.value === 'Alla') {
 										props.dispatch(
 											sortbyCity({ city: '' })
 										);
@@ -50,7 +50,7 @@ const Annonser = (props) => {
 									}
 								}}
 								options={[
-									'All',
+									'Alla',
 									'Umeå',
 									'Gävle',
 									'Stockholm',
@@ -64,7 +64,7 @@ const Annonser = (props) => {
 								value={type}
 								handleChange={(event) => {
 									setType(event.target.value);
-									if (event.target.value === 'All') {
+									if (event.target.value === 'Alla') {
 										props.dispatch(
 											sortbyJobType({ jobType: '' })
 										);
@@ -76,7 +76,7 @@ const Annonser = (props) => {
 										);
 									}
 								}}
-								options={['All', 'Heltid', 'Deltid']}
+								options={['Alla', 'Heltid', 'Deltid']}
 							/>
 						</Grid>
 						<Grid className='dropdown'>
@@ -86,7 +86,7 @@ const Annonser = (props) => {
 								handleChange={(event) => {
 									setPublished(event.target.value);
 
-									if (event.target.value === 'Today') {
+									if (event.target.value === 'Idag') {
 										const day = moment()
 											.format()
 											.substr(0, 10);
@@ -96,7 +96,7 @@ const Annonser = (props) => {
 											})
 										);
 									} else if (
-										event.target.value === 'Last 7 days'
+										event.target.value === 'Senaste 7 dagarna'
 									) {
 										const day = moment().subtract(
 											7,
@@ -112,7 +112,7 @@ const Annonser = (props) => {
 											})
 										);
 									} else if (
-										event.target.value === 'Last 30 days'
+										event.target.value === 'Senaste 30 dagarna'
 									) {
 										const day = moment().subtract(
 											30,
@@ -129,7 +129,7 @@ const Annonser = (props) => {
 												],
 											})
 										);
-									} else if (event.target.value === 'All') {
+									} else if (event.target.value === 'Alla') {
 										props.dispatch(
 											sortByPublishedDay({
 												published: ['', 'all'],
@@ -138,10 +138,10 @@ const Annonser = (props) => {
 									}
 								}}
 								options={[
-									'All',
-									'Today',
-									'Last 7 days',
-									'Last 30 days',
+									'Alla',
+									'Idag',
+									'Senaste 7 dagarna',
+									'Senaste 30 dagarna',
 								]}
 							/>
 						</Grid>
@@ -155,7 +155,7 @@ const Annonser = (props) => {
 					<JobPostList results={props.results} text={'Spara'} />
 				</Grid>
 			</Grid>
-		</>
+		</> 
 	);
 };
 

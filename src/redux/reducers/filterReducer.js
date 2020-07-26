@@ -17,7 +17,6 @@ export default (state = filterReducerDefaultState, action) => {
 				...state,
 				jobType: action.jobType,
 			};
-
 		case 'SORT_BY_PUBLISHED_DAY':
 			return {
 				...state,

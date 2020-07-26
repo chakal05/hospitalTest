@@ -57,7 +57,7 @@ const jobPostList = (props) => {
 									action={() => {
 										const savedJobs = JSON.parse(
 											localStorage.getItem('savedJobs')
-										);
+										) || [] ;
 
 										// Remove item
 
@@ -76,6 +76,7 @@ const jobPostList = (props) => {
 										// Add item
 
 										if (props.text === 'Spara') {
+                                           console.log(savedJobs)
 											const check = savedJobs.filter(
 												(element) =>
 													element.identifier ===

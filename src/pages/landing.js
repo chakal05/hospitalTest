@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import './styles/landing.scss';
 
 const Landing = (props) => {
-	const { dispatch } = props;
+	const { dispatch } = props; 
 	useEffect(() => {
 		dispatch(startSearchResults());
 		// eslint-disable-next-line react-hooks/exhaustive-deps

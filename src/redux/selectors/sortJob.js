@@ -43,7 +43,7 @@ export default (jobs, { text, jobType, published, city }) => {
 					}
 				};
 
-				if (text) {
+				if (text !== '') {
 					if (jobType) {
 						return textResult && typeOfJobs;
 					} else if (date) {
@@ -125,6 +125,22 @@ export default (jobs, { text, jobType, published, city }) => {
 					} else {
 						return getByCity;
 					}
+				}
+
+				if (text === '') {
+					return job;
+				}
+
+				if (jobType === '') {
+					return job;
+				}
+
+				if (date === '') {
+					return job;
+				}
+
+				if (city === '') {
+					return city;
 				}
 			})
 			.sort((a, b) => {

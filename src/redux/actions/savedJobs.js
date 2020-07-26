@@ -9,3 +9,4 @@ export const removeFromSavedJobs = ({ identifier }) => ({
 		identifier,
 	},
 });
+ 

@@ -14,3 +14,4 @@ export default (state = savedJobs, action) => {
 			return state;
 	}
 };
+ 
